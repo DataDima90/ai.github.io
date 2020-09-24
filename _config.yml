@@ -1,0 +1,59 @@
+# SITE CONFIGURATION
+title: Dima's place for Machine Learning # your site title
+author: Dimitri Wilhelm # You :P
+description: > # Meta description of Homepage
+  Collection of Machine Learning methods, etc.
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://aidima.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+
+# SEO PLUGIN
+social:
+  name: Dimitri Wilhelm
+  links:
+    - https://www.linkedin.com/in/DimitriWilhelm
+    - https://github.com/datadima90
+
+# THEME SETTINGS
+navigation: # Navigation links
+  - {name: 'Home', link: '/'}
+  # - {name: 'Blog', link: '/blog'}
+  - {name: 'About', link: '/about'}
+  - {name: 'Contact', link: '/contact'}
+
+tagline: >
+  Dima's place for Machine Learning
+
+hero_img: posts/sleek_lg.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
+
+email: dima.wilhelm@gmx.de # email for form submission
+
+github_username:  datadima90 # replace with your_github_username or comment to remove link from footer
+
+service_worker: true
+
+# BUILD SETTINGS
+markdown: kramdown
+highlighter: rouge # or pygments or null
+# theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
+exclude:
+  - README.md
+  - node_modules
+  - script
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - npm-debug.log
+  - gulpfile.js
+  - sleek.jpg
+
+include: ['_pages']
+permalink: /:title/
+
+compress_html:
+  clippings: all
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
