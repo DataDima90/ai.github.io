@@ -4,7 +4,7 @@ author: Dimitri Wilhelm # You :P
 description: > # Meta description of Homepage
   Collection of Machine Learning methods, etc.
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://aidima.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://datadima90.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # SEO PLUGIN
 social:
