@@ -9,17 +9,9 @@ summary: Mathematical Theory
 ---
 
 
-```python
-import pandas as pd
-```
-
-
 ![]({{ site.url }}/assets/img/posts/emile-perron-190221.jpg)
-[![Test Logo](https://github.com/datadima90/datadima90.github.io/assets/img/posts/emile-perron-190221.jpg)]
 
-<img src="https://github.com/datadima90/datadima90.github.io/assets/img/posts/emile-perron-190221.jpg">
-
-#Convolutional Neural Networks (CNN)
+# Convolutional Neural Networks (CNN)
 CNNs are a bit different to fully connected neural networks:
 1. The layers are organised in 3 dimensions: width, height and depth.
 2. The neurons in one layer do not connect to all the neurons in the next layer but
