@@ -1,6 +1,6 @@
 ---
 layout: post
-title: State-of-the-art Models: Transformers in NLP
+title: Introduction to the Transformers in NLP
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [NLP, Transformers]
