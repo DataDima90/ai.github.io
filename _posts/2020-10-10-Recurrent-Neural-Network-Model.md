@@ -3,7 +3,7 @@ layout: post
 title: Recurrent-Neural-Networks Models
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
-categories: [NLP, Sequence-to-Sequence]
+categories: [RNN, Recurrent Neural Networks]
 mathjax: true
 summary: Introduction to RNN Models
 ---
