@@ -1,0 +1,14 @@
+---
+layout: post
+title: Building a Question Answering Model
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [NLP, ELMo]
+mathjax: true
+summary: Building a Question Answering Model
+---
+
+
+### sources
+- https://deeplearninganalytics.org/testing-bert-based-question-answering-on-coronavirus-articles/
+- https://towardsdatascience.com/nlp-building-a-question-answering-model-ed0529a68c54

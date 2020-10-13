@@ -25,6 +25,9 @@ long-term dependency learning. During the evaluation phase, the segment is shift
 The new segment has to be processed entirely from scratch. This evaluation method is unfortunately quite compute-intensive.
 
 # Model Architecture
+Transformer includes two separate mechanisms - an encoder that reads the input and 
+a decoder that produces a prediction for the task.
+
 [image]
 
 
@@ -34,6 +37,7 @@ The new segment has to be processed entirely from scratch. This evaluation metho
 
 # Other sources
 - https://www.analyticsvidhya.com/blog/2019/06/understanding-transformers-nlp-state-of-the-art-models/
+- https://jalammar.github.io/illustrated-transformer/
 
 
 # Challenges/Limitations

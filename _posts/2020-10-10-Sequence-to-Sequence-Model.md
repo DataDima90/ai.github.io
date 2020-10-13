@@ -3,7 +3,7 @@ layout: post
 title: Sequence-to-Sequence Models
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
-categories: [NLP, Sequence-to-Sequence]
+categories: [NLP, Sequence-to-Sequence Models]
 mathjax: true
 summary: Introduction to Seq2Seq Models
 ---
