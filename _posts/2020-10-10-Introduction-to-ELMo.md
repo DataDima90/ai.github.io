@@ -65,7 +65,7 @@ ELMo word vectors successfully address this issue. ELMo word representations tak
 into equation for calculating the word embeddings. Hence, the term "read" would have different 
 ELMo vectors under different context.
 
-### Examples
+### Example applications of ELMos in NLP tasks
 - Machine Translation
 - Language Modeling
 - Text Summarization

@@ -1,0 +1,34 @@
+---
+layout: post
+title: Best Practice in Machine Learning
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [ML]
+mathjax: true
+summary: Best Practice in Data Science
+---
+
+
+
+### Feature Engineering
+
+#### One-Hot Encoding
+
+#### Binning
+
+#### Normalization
+
+#### Standardization
+
+#### Dealing with Missing Features
+
+#### Data Imputation Techniques
+
+
+### Learning Algorithm Selection
+
+
+
+#### Sources
+- https://www.dropbox.com/s/nije38rerpfa18o/Chapter5.pdf?dl=0
+- http://assets.ctfassets.net/wjy39fxpkkkn/zc3qUAnZcsoYkC0oC2wmQ/2eb7377be84b362df6de4d0d506b511b/EG_Best_Practices_in_Data_Science_Report_-_Final_.pdf
