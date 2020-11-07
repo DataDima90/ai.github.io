@@ -1,3 +1,12 @@
+---
+layout: post
+title: Software Development and Deployment of ML
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Software Engineering, ML]
+mathjax: true
+summary: Development and Deployment of ML
+---
 
 
 
