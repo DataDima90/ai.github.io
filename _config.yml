@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
-title: Dima's place for Machine Learning # your site title
+title: Dima's Knowledge Collection in Data & AI # your site title
 author: Dimitri Wilhelm # You :P
 description: > # Meta description of Homepage
-  Collection of Machine Learning methods, etc.
+  Collection of Best Practices, Concepts, Ideas, etc. in Data & AI
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://datadima90.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
