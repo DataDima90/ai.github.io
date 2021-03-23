@@ -90,7 +90,7 @@ A Dockerfile is a text file that defines a Docker Image. You will use a Dockerfi
 This is how our Dockerfile looks like:
 
 ```python
-#We specify the parent base image which is the python version 3.8
+# We specify the parent base image which is the python version 3.8
 FROM python:3.8
 
 MAINTAINER Dima Wilhelm <dima.wilhelm@gmx.de>
@@ -154,3 +154,13 @@ If successful you should see a result like this:
  * Debug mode: off
  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
 ```
+To check if your docker container is running, use this command:
+
+```bash
+docker ps
+```
+
+WOW! We have successfully deployed our Machine Learning model using docker.
+
+The code can be found here.
+
