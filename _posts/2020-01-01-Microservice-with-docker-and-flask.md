@@ -47,8 +47,11 @@ FastAPI is a modern framework that allows you to build APIs seamlessly without m
 
 It generates the documentation on the go when you are developing the API which is the most requested thing from all the developers. Documentation is a great way for other developers to collaborate on a project as it presents them with everything that can be done with the necessary instructions. It also generates a nice GUI which solves everything that was missing in the flask.
 
-Our Recommendations:
-- Use FastAPI if Speed, Developer Experience and Open standards
+**Our Recommendations:**
+
+- Use **Flask** if you are not comfortable with the maturity-level of FastAPI, need to set up the whole web interface (Front-end and back-end) with server-side templating, or can not live without some of the community-matinained Flask extensions.
+- 
+- Use **FastAPI** if the main goal is to check if the model is working in the production environment or not, creating an API makes more sense because the rest of the things can be managed by other teams of developers and to clearly explain them the usage of the program you developed, FastAPI auto docs is a good solution.
 
 ## Building our API using Flask
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
