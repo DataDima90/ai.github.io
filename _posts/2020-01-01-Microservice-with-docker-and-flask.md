@@ -14,3 +14,20 @@ If you want to deploy your machine learning model into production then you can u
 to run and also deploy your Machine Learning model.
 
 
+For the machine learning we wanna deploy, we need the following things:
+
+- API using Flask (or fastAPI)
+
+
+```python
+from flask import Flask, request
+
+import numpy as np
+import pickle
+import json
+
+flask_app = Flask(__name__)
+
+# Path of the ML model
+
+```
