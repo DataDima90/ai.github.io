@@ -14,6 +14,11 @@ If you want to deploy your machine learning model into production then you can u
 to run and also deploy your Machine Learning model.
 
 
+## Installing Docker
+Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
+
+## Content
+
 For the machine learning we wanna deploy, we need the following things:
 
 - Our machine learning model: model.py 
@@ -21,7 +26,7 @@ For the machine learning we wanna deploy, we need the following things:
 - Our custom Docker Image for our web application with machine learning model: Dockerfile
 
 ## Building our API using Flask
-The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, 
+The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
 
 ```python
 from flask import Flask, request, render_template
@@ -63,7 +68,7 @@ def index():
 
 if __name__ == '__main__':
     # listen on port 8080
-    app.run(port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8080, debug=False)
 ```
 
 ## ML_Model
@@ -129,13 +134,23 @@ EXPOSE 8080
 ENTRYPOINT [ "python" ]
 
 # Run app.py when the container launches
-CMD [ "app.py","run","--host","0.0.0.0"]
+CMD [ "app.py","run","--host"]
 ```
 In our Dockerfile, we pulled the Docker base image which is python:3.8, updated the system dependencies, installed the packages in the requirements.txt file, ran the ML code to train the model and generate the pickle file which the API will use and lastly run the server locally.
 
-Now let's build our Docker image from the Dockerfile we have createdusing this command:
+Now let's build our Docker image from the Dockerfile we have created using this command:
 ```bash
 docker build -t model:1.0 .
 ```
 
 
+If successful you should see a result like this:
+
+```bash
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+```
