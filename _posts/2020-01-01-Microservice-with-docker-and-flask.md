@@ -31,3 +31,17 @@ flask_app = Flask(__name__)
 # Path of the ML model
 
 ```
+
+### ML_Model
+The **ML_Model** directory contains the ML model code and the pickle file generated after model is being trained which the API will make use of.
+
+### requirements.txt
+```python
+scipy==1.6.1
+pandas==1.2.3
+numpy==1.20.1
+Flask==1.1.2
+scikit-learn==0.24.1
+```
+
+
