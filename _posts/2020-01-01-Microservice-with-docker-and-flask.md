@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Microservices
+title: How to deploy Machine Learning models as a Microservice using Flask and FastAPI
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
-categories: [Microservice, Docker, Flask, Python]
+categories: [Microservice, Docker, Flask, FastAPI, Python]
 mathjax: true
 summary: Microservices with Docker and Flask
 ---
@@ -22,8 +22,27 @@ Docker is available across various platforms whether if you are using a Linux, M
 For the machine learning we wanna deploy, we need the following things:
 
 - Our machine learning model: model.py 
-- Our API using Flask (or fastAPI): app.py
+- Our API using Flas fastAPI): app.py
 - Our custom Docker Image for our web application with machine learning model: Dockerfile
+
+# Step 2. Create API
+Python is one of the most popular programming languages. Its popularity is fueled by the tools it offers. Flask, a web framework, is one such tool, which is popular amongst the machine learning community. It's also widely used for API development. But there's a new framework on the rise: FastAPI. Unlike Flask, FastAPI is an ASGI (Asynchronous Server Gateway Interface) framework. On par with Go and NodeJS, FastAPI is one of the fastest Python-based web frameworks.
+
+## Flask
+It is a Python-based framework that allows you to hook up websites with less amount of code. You can create a small-scale website with this as it allows customization at every step. Being a minimalistic package, only core components are bundled with this and all other extensions require explicit setup. Flask is used by many developers to host their APIs. API (Application Program Interface) is an interface that allows communication between multiple intermediaries meaning that one can access any type of data using any technology. For instance, you can access an API using Javascript which could be built using Python.
+
+## Problems with Flask framework
+The problem with flask is that there is no data validation, meaning, that we can pass any type of data being it string, tuple, numbers, or any character. This can break the program often and you can imagine if an Machine Learning model getting wrong data types, the program will crash. You can create a data checker before passing the values further but it would add up additional work.
+
+The error pages in Flask as simple HTML pages that can raise decoder errors when the API is being called in other applications. There are other issues with Flask such as slow nature, no async, and web sockets support that can speed up the processes, and finally no automated docs generation system. You need to manually design the user interface for the usage and examples of the API. All these issues are resolved in the new framework.
+
+## FastAPI
+It is a modern framework that allows you to build APIs seamlessly without much effort. It has the ability to separate the server code from the business logic increasing code maintainability. As the name itself has fast in it, it is much faster as compared to the flask because it’s built over ASGI (Asynchronous Server Gateway Interface) instead of WSGI (Web Server Gateway Interface). It has a data validation system that can detect any invalid data type at the runtime and returns the reason for bad inputs to the user in the JSON format only which frees developers from managing this exception explicitly.
+
+It generates the documentation on the go when you are developing the API which is the most requested thing from all the developers. Documentation is a great way for other developers to collaborate on a project as it presents them with everything that can be done with the necessary instructions. It also generates a nice GUI which solves everything that was missing in the flask.
+
+Our Recommendations:
+- Use FastAPI if Speed, Developer Experience and Open standards
 
 ## Building our API using Flask
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
@@ -70,6 +89,11 @@ if __name__ == '__main__':
     # listen on port 8080
     app.run(host="0.0.0.0", port=8080, debug=False)
 ```
+
+## Building our API using FastAPI
+
+
+
 
 ## ML_Model
 The **ML_Model** directory contains the ML model code and the pickle file generated after model is being trained which the API will make use of.
