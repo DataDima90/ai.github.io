@@ -45,3 +45,16 @@ scikit-learn==0.24.1
 ```
 
 
+### Dockerfile
+This is how the Dockerfile looks like:
+```python
+
+```
+In our Dockerfile, we pulled the Docker base image which is python:3.8, updated the system dependencies, installed the packages in the requirements.txt file, ran the ML code to train the model and generate the pickle file which the API will use and lastly run the server locally.
+
+Now let's build our Docker image from the Dockerfile we have createdusing this command:
+```bash
+docker build -t model:1.0 .
+```
+
+
