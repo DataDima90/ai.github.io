@@ -2,7 +2,7 @@
 title: Dima's Knowledge Place # your site title
 author: Dimitri Wilhelm # You :P
 description: > # Meta description of Homepage
-  Knowledge Collection about Data, AI and Cloud Computing
+  Collection about Data, AI and Cloud Computing
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://datadima90.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -21,7 +21,7 @@ navigation: # Navigation links
   - {name: 'Contact', link: '/contact'}
 
 tagline: >
-  Knowledge Collection about Data, AI and Cloud Computing
+  Collection about Data, AI and Cloud Computing
 
 hero_img: posts/emile-perron-190221.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
 
