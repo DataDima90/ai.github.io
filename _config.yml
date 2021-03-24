@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
-title: Dima's Knowledge Collection in Data & AI # your site title
+title: Dima's Knowledge Collection in Data, AI and Cloud Computing # your site title
 author: Dimitri Wilhelm # You :P
 description: > # Meta description of Homepage
-  Collection of Best Practices, Concepts, Ideas, etc. in Data Engineering and Data Science
+  Collection of Best Practices, Concepts, Ideas, etc.
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://datadima90.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -21,7 +21,7 @@ navigation: # Navigation links
   - {name: 'Contact', link: '/contact'}
 
 tagline: >
-  Collection of Best Practices, Concepts, Ideas, etc. in Data Engineering and Data Science
+  Collection of Best Practices, Concepts, Ideas, etc.
 
 hero_img: posts/emile-perron-190221.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
 
