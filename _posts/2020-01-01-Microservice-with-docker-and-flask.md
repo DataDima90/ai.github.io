@@ -101,6 +101,87 @@ if __name__ == '__main__':
 
 ## Building our API using FastAPI
 
+- Flask is a popular Python framework for making web APIs. 
+
+
+
+## Using Gunicorn WSGI for production
+Gunicorn is a necessary componenent for getting Flask into production
+WSGI stands for "Web Server Gateway Interface". A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Gunicorn is one of the few options of WSGI we can easily setup and use with Flask.
+
+Installing Gunicorn by typing command:
+
+```bash
+pip install gunicorn
+```
+
+Next, we create a wsgi.py file and add the following code:
+
+```python
+from app import app
+
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, debug=True)
+```
+
+Now, instead of starting our API by running python app.py, we will use now this:
+
+```bash
+$ gunicorn -w 3 -b :8080 -t 30 --reload wsgi:app
+```
+
+When we run this command, we start app.py using the app from the wsgi.py. We are also asking Gunicorn to setup 3 worker threads, set the port to 8080, set timeout to 30 secondes, and allow hot-reloading the app.py file, so that it rebuilds immediatly if the code in app.py changes.
+
+
+
+## Nginx 
+Nginx is our web server, which will handle all requests and act as a load balancer for the application.
+
+In our nginx folder, we create two files. First file, nginx.conf, contains:
+
+```python
+worker_processes  3;
+
+events { }
+
+http {
+
+  keepalive_timeout  360s;
+
+  server {
+
+      listen 8080;
+      server_name api;
+      charset utf-8;
+
+      location / {
+          proxy_pass http://api:5000;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      }
+  }
+}
+```
+
+
+Our Dockerfile for nginx:
+
+```
+FROM nginx:1.15.2
+
+RUN rm /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/
+```
+
+**Description:** Creates a Docker containter with the nginx image, then copies the nginx config to it.
+
+
+
+
+- Docker is a great way to make the API easy to deploy on any server. 
+
 
 
 
