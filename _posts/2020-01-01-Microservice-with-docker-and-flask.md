@@ -37,15 +37,37 @@ This Page is divided into following parts:
 ```bash
 pip install flask
 ```
+We assume we have following files:
+1. A trained model called `model.pkl` and saved in `models` folder.
+2. A `requirements.txt` file that looks like that:
 
-We assume we have already a trained model `model.pkl` in `models` folder.
+```bash
+flask
+gunicorn
+...
+
+```
 
 ```
 flask-ml-api
 | - api
-    | __init__.py
+    | - __init__.py
+    | - endpoints
+        | __init__.py
+        | - prediction.py
     | - models
         | - model.pkl
+    | - tests
+        | - __init__.py
+        | - test_prediction.py
+    | - app.py
+    | - wsgi.py
+    | - requirements.py
+    | - Dockerfile
+| - nginx
+    | - nginx.conf
+    | - Dockerfile
+| - docker-compose.yml
 ```
 
 <a name="api"></a>
