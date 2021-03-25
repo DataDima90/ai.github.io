@@ -10,7 +10,7 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 # Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 
-Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
+Deployment of machine learning models is the process of making trained models available in production. Here we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
 
 We will cover the following frameworks and topics:
 - **Flask** is a popular Python framework for making web *APIs* which is popular amongst the machine learning community.
@@ -70,7 +70,7 @@ pytest==6.2.2
 gunicorn==19.10.0
 ```
 
-As you can see, we have already a trained model called `model.pkl` and saved in `models` folder.
+As you can see, we have already a trained model called `model.pkl` and saved in `models` folder. This model is a classifier with 3 classes and trained on iris dataset, i.e. it has 4 input features.
 
 <a name="api"></a>
 ## 1. Building our API using Python and Flask
@@ -84,29 +84,24 @@ At first we create our new directory called `endpoints`. For each endpoint we cr
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
 
 ```python
-# api/app.py
+# api/endpoints/prediction.py
 
-from flask import Flask
+from flask import Blueprint
 import pickle
 
-# Create an instance of the Flask class with the default __name__
-app = Flask(__name__)
+prediction_api = Blueprint('prediction_api', __name__)
 
-# Path of our saved trained model as pickle file
-MODEL_PATH = "models/model.pkl"
+# Load our ML model
+MODEL = pickle.load(open("./models/model.pkl", 'rb+'))
 
 
-# URL of our API for our ml model
-@app.route('/prediction')
+@prediction_api.route('/prediction')
 def prediction():
-    # Get all necessary features
+    # Get all necessary feature values
     sample = [1.0, 2.0, 3.0, 4.0]
 
-    # Load our ml model
-    model = pickle.load(open(MODEL_PATH, 'rb+'))
-
     # Predict the species
-    species = model.predict([sample]).tolist()[0]
+    species = MODEL.predict([sample]).tolist()[0]
 
     # Convert species class into class name
     if species == 0:
@@ -117,12 +112,6 @@ def prediction():
         s = "Virginica"
 
     return {"prediction": s}
-
-
-if __name__ == '__main__':
-    # Set localhost with port 8080
-    app.run(host="0.0.0.0", port="8080")
-
 ```
 
 
