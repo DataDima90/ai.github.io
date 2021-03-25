@@ -41,9 +41,9 @@ pip install flask
 We assume we have already a trained model `model.pkl` in `models` folder.
 
 ```
-**flask-ml-api**
-| - **api**
-    | - **models**
+flask-ml-api
+| - /api
+    | - /models
         | - model.pkl
 ```
 
