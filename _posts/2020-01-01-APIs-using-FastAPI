@@ -1,0 +1,12 @@
+---
+layout: post
+title: How to build a production-ready Machine Learning Microservice
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Microservice, Docker, Flask, Python]
+mathjax: true
+summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
+---
+
+# Building a Machine Learning Microservice using FastAPI and Docker
+
