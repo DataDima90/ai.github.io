@@ -23,11 +23,11 @@ The whole code in this post is available on my GitHub.
 
 <a name="getstarted"></a>
 ## 1. Getting Started
-We will cover the following frameworks and topcis:
+We will cover the following frameworks and topics:
 - **Flask** is a popular Python framework for making web *APIs* which is popular amongst the machine learning community.
-- **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask aplication in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
+- **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
 - **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
-- **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, you can combine multiple instances of the docker container when you want to scale up your API.
+- **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API.
 
 
 
