@@ -42,8 +42,9 @@ We assume we have already a trained model `model.pkl` in `models` folder.
 
 ```
 flask-ml-api
-| - /api
-    | - /models
+| - api
+    | __init__.py
+    | - models
         | - model.pkl
 ```
 
