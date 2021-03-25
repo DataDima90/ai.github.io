@@ -5,20 +5,18 @@ featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [Microservice, Docker, Flask, Python]
 mathjax: true
-summary: Building a Machine Learning API using Flask, Gunicorn, Nginx and Docker
+summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 ---
 
-# Building a Machine Learning API using Flask, Gunicorn, Nginx and Docker
+# Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 
-Our Objective
 Deployment of machine learning models is the process of making trained models available in production. In this post we will learn a simple and effective way how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment.
 
 
 The whole code in this post is available on my GitHub.
 
-This post is divided into the following parts:
 
-# Table of Contents
+## Table of Contents
 
 1. [Getting Started](#getstarted)
 2. [Building API using Python and Flask](#api)
