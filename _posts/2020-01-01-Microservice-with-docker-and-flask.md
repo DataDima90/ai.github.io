@@ -50,67 +50,10 @@ To build an *API* from our trained model, we will be using one of the most popul
 <a name="docker"></a>
 ## 4. Dockerization
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Installing Docker
 Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
 
-## Content
 
-For the machine learning we wanna deploy, we need the following things:
 
-- Our machine learning model: model.py 
-- Our API using Flas fastAPI): app.py
-- Our custom Docker Image for our web application with machine learning model: Dockerfile
-
-# Step 2. Create API
-Python is one of the most popular programming languages. Its popularity is fueled by the tools it offers. Flask, a web framework, is one such tool, which is popular amongst the machine learning community. It's also widely used for API development. But there's a new framework on the rise: FastAPI. Unlike Flask, FastAPI is an ASGI (Asynchronous Server Gateway Interface) framework. On par with Go and NodeJS, FastAPI is one of the fastest Python-based web frameworks.
-
-## Flask
-Flask is a Python-based framework that allows you to hook up websites with less amount of code. You can create a small-scale website with this as it allows customization at every step. Being a minimalistic package, only core components are bundled with this and all other extensions require explicit setup. Flask is used by many developers to host their APIs. API (Application Program Interface) is an interface that allows communication between multiple intermediaries meaning that one can access any type of data using any technology. For instance, you can access an API using Javascript which could be built using Python.
-
-## Problems with Flask framework
-
-### 1. No Data Validation
-The problem with flask is that there is no data validation, meaning, that we can pass any type of data being it string, tuple, numbers, or any character. This can break the program often and you can imagine if an Machine Learning model getting wrong data types, the program will crash. You can create a data checker before passing the values further but it would add up additional work.
-
-### 2. Decoder Errors
-The error pages in Flask as simple HTML pages that can raise decoder errors when the API is being called in other applications. 
-
-### 3. Other issues
-There are other issues with Flask such as slow nature, no async, and web sockets support that can speed up the processes, and finally no automated docs generation system. You need to manually design the user interface for the usage and examples of the API. All these issues are resolved in the new framework.
-
-## FastAPI
-FastAPI is a modern framework that allows you to build APIs seamlessly without much effort. It has the ability to separate the server code from the business logic increasing code maintainability. As the name itself has fast in it, it is much faster as compared to the flask because it’s built over ASGI (Asynchronous Server Gateway Interface) instead of WSGI (Web Server Gateway Interface). It has a data validation system that can detect any invalid data type at the runtime and returns the reason for bad inputs to the user in the JSON format only which frees developers from managing this exception explicitly.
-
-It generates the documentation on the go when you are developing the API which is the most requested thing from all the developers. Documentation is a great way for other developers to collaborate on a project as it presents them with everything that can be done with the necessary instructions. It also generates a nice GUI which solves everything that was missing in the flask.
-
-**Our Recommendations:**
-
-- Use **Flask** if you are not comfortable with the maturity-level of FastAPI, need to set up the whole web interface (Front-end and back-end) with server-side templating, or can not live without some of the community-matinained Flask extensions.
-- 
-- Use **FastAPI** if the main goal is to check if the model is working in the production environment or not, creating an API makes more sense because the rest of the things can be managed by other teams of developers and to clearly explain them the usage of the program you developed, FastAPI auto docs is a good solution.
 
 ## Building our API using Flask
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
