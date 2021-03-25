@@ -73,15 +73,9 @@ gunicorn==19.10.0
 As you can see, we have already a trained model called `model.pkl` and saved in `models` folder. This model is a classifier with 3 classes and trained on iris dataset, i.e. it has 4 input features.
 
 <a name="api"></a>
-## 1. Building our API using Python and Flask
+## 1. Building a simple, easily extendable API using Python and Flask
 
-If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast. If we wanna manage multiple endpoints for our machine learning then we get in trouble because we would stuff all code into one file. For this problem **Flask** provides blueprints.
-
-Let's implement a very basic Flask API for our ML model so that we can maintain multiple endpoints with ease.
-At first we create our new directory called `endpoints`. For each endpoint we create a own python file in our folder. Initalize it with a blank file named `__init__.py`.
-
-
-The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
+If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for building APIs.
 
 ```python
 # api/endpoints/prediction.py
@@ -91,19 +85,19 @@ import pickle
 
 prediction_api = Blueprint('prediction_api', __name__)
 
-# Load our ML model
+# load our ML model
 MODEL = pickle.load(open("./models/model.pkl", 'rb+'))
 
 
 @prediction_api.route('/prediction')
 def prediction():
-    # Get all necessary feature values
+    # sample feature values
     sample = [1.0, 2.0, 3.0, 4.0]
 
-    # Predict the species
+    # predict the species
     species = MODEL.predict([sample]).tolist()[0]
 
-    # Convert species class into class name
+    # convert species class into class name
     if species == 0:
         s = "Setosa"
     elif species == 1:
@@ -114,8 +108,28 @@ def prediction():
     return {"prediction": s}
 ```
 
+As you can see, we need to initializie our `prediction` API as a blueprint called `prediction_api`. Now that we have set up our first endpoint, we can add as many new endpoints as we like. In this way we can maintain each endpoint seperate in their own file easily. That's it, the prediction API is set up! 
 
+Now we can simply import the blueprint `prediction_api` and use it in our Flask `app.py`:
 
+```python
+# api/app.py
+
+from flask import Flask
+from endpoints.prediction import prediction_api
+
+# Create an instance of the Flask class with the default __name__
+app = Flask(__name__)
+
+# Register our endpoint
+app.register_blueprint(prediction_api)
+
+if __name__ == '__main__':
+    # listen on port 8080
+    app.run(host="0.0.0.0", port=8080, debug=True)
+
+```
+We set the host to `0.0.0.0` (which is localhost) so that our flask API runs on localhost. Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
 
 <a name="guni"></a>
 ## 2. Test
