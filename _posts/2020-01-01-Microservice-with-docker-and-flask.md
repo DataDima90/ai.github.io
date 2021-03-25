@@ -14,6 +14,27 @@ If you want to deploy your machine learning model into production then you can u
 to run and also deploy your Machine Learning model.
 
 
+This post is divided into the following parts:
+
+# Table of Contents
+
+1. [ Description. ](#desc)
+2. [ Usage tips. ](#usage)
+
+<a name="desc"></a>
+## 1. Description
+
+sometext
+
+<a name="usage"></a>
+## 2. Usage tips
+
+
+
+We will use the following frameworks:
+
+
+
 ## Installing Docker
 Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
 
@@ -106,8 +127,10 @@ if __name__ == '__main__':
 
 
 ## Using Gunicorn WSGI for production
-Gunicorn is a necessary componenent for getting Flask into production
-WSGI stands for "Web Server Gateway Interface". A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Gunicorn is one of the few options of WSGI we can easily setup and use with Flask.
+Gunicorn is a necessary componenent for getting Flask into production. 
+WSGI stands for "Web Server Gateway Interface". A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production.Instead, Flask is designed to be used with other WSGI-compliant web server. For this post, (and in the template) we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
+
+
 
 Installing Gunicorn by typing command:
 
@@ -124,6 +147,7 @@ from app import app
 if __name__ == '__main__':
     app.run(use_reloader=True, debug=True)
 ```
+The wsgi.py is typically referred to as a WSGI entrypoint. What is WSGI, you ask? It stands for 'Web Server Gateway Interface', and – in short – it's a specification defining how a web server can interact with Python applications.
 
 Now, instead of starting our API by running python app.py, we will use now this:
 
@@ -277,4 +301,8 @@ docker ps
 WOW! We have successfully deployed our Machine Learning model using docker.
 
 The code can be found here.
+
+Source:
+- https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
+- 
 
