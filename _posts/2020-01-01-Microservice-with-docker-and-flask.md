@@ -30,7 +30,7 @@ sometext
 <a name="usage"></a>
 ## 2. Usage tips
 
-<a name="usage"></a>
+<a name="del"></a>
 ## 3. Test
 
 
