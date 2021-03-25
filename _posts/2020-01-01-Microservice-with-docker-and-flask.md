@@ -10,7 +10,7 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 # Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 
-Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
+Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models c****an be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
 
 We will cover the following frameworks and topics:
 - **Flask** is a popular Python framework for making web *APIs* which is popular amongst the machine learning community.
@@ -26,59 +26,65 @@ Let's get started.
 
 This Page is divded into following parts:
 
+1. [Prerequisites](#pre)
 1. [Building API using Python and Flask](#api)
 2. [Using Gunicorn WSGI](#guni)
 3. [Dockerization](#docker)
 
+<a name="pre"></a>
+## 1. Prerequisites
+
+```bash
+pip install flask
+```
 
 <a name="api"></a>
 ## 1. Building our API using Python and Flask
 
-If we want to make our trained machine learning model available to other people, we have to use and write **API**s. **Flask** is one of the most popular framework for making **API**s easily and fast.
+If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast.
 
-The app.py is a python script which contains the **API** we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
+The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
 
 ```python
-from flask import Flask, request, render_template
+# api/app.py
+
+from flask import Flask
 import pickle
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+# Create an instance of the Flask class with the default __name__
+app = Flask(__name__)
 
-# Global Variable
+# Path of our saved trained model as pickle file
 MODEL_PATH = "models/model.pkl"
 
 
-@app.route('/')
-def main():
-    return render_template('index.html')
-
-
-@app.route('/predict', methods=['POST'])
-def index():
+# URL of our API for our ml model
+@app.route('/prediction')
+def prediction():
     # Get all necessary features
-    features = [float(x) for x in request.form.values()]
+    sample = [1.0, 2.0, 3.0, 4.0]
 
-    if None not in features:
-        # Load our ml model
-        model = pickle.load(open(MODEL_PATH, 'rb+'))
+    # Load our ml model
+    model = pickle.load(open(MODEL_PATH, 'rb+'))
 
-        # Predict the species
-        species = model.predict([features]).tolist()[0]
+    # Predict the species
+    species = model.predict([sample]).tolist()[0]
 
-        # Convert species class into class name
-        if species == 0:
-            s = "Setosa"
-        elif species == 1:
-            s = "VersiColor"
-        else:
-            s = "Virginica"
+    # Convert species class into class name
+    if species == 0:
+        s = "Setosa"
+    elif species == 1:
+        s = "VersiColor"
+    else:
+        s = "Virginica"
 
-        return render_template('index.html', prediction_text='The species of the iris plant is {}'.format(s))
+    return {"prediction": s}
 
 
 if __name__ == '__main__':
-    # listen on port 8080
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    # Set localhost with port 8080
+    app.run(host="0.0.0.0", port="8080")
+
 ```
 
 
