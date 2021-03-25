@@ -10,11 +10,9 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 # Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 
-Deployment of machine learning models is the process of making trained models available in production. In this post we will learn a simple and effective way how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment.
-
+Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
 
 The whole code in this post is available on my GitHub.
-
 
 ## Table of Contents
 
