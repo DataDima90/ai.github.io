@@ -18,9 +18,9 @@ This post is divided into the following parts:
 
 # Table of Contents
 
-1. [ Description. ](#desc)
+1. [ Description._](#desc)
 2. [ Usage tips. ](#usage)
-3. [_Test.__](#test)
+3. [_Test._](#test)
 
 <a name="desc"></a>
 ## 1. Description
