@@ -129,7 +129,7 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
 
 ```
-We set the host to `0.0.0.0` (which is localhost) so that our flask API runs on localhost. Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
+Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
 
 <a name="guni"></a>
 ## 2. Test
