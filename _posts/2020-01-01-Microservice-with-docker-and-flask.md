@@ -1,40 +1,79 @@
 ---
 layout: post
-title: How to deploy Machine Learning models as a Microservice using Flask and FastAPI
+title: How to build a production-ready Machine Learning Microservice
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
-categories: [Microservice, Docker, Flask, FastAPI, Python]
+categories: [Microservice, Docker, Flask, Python]
 mathjax: true
-summary: Microservices with Docker and Flask
+summary: Building a Machine Learning API using Flask, Gunicorn, Nginx and Docker
 ---
 
-# Microservice
+# Building a Machine Learning API using Flask, Gunicorn, Nginx and Docker
 
-If you want to deploy your machine learning model into production then you can use a popular tool named **Docker** 
-to run and also deploy your Machine Learning model.
+Our Objective
+Deployment of machine learning models is the process of making trained models available in production. In this post we will learn a simple and effective way how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment.
 
+
+The whole code in this post is available on my GitHub.
 
 This post is divided into the following parts:
 
 # Table of Contents
 
-1. [ Description_](#desc)
-2. [ Usage tips ](#usage)
-3. [ Delete ](#del)
+1. [Getting Started](#getstarted)
+2. [Building API using Python and Flask](#api)
+3. [Using Gunicorn WSGI](#guni)
+4. [Dockerization](#docker)
 
-<a name="desc"></a>
-## 1. Description
+<a name="getstarted"></a>
+## 1. Getting Started
+We will cover the following frameworks and topcis:
+- **Flask** is a popular Python framework for making web *APIs* which is popular amongst the machine learning community.
+- **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask aplication in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
+- **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
+- **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, you can combine multiple instances of the docker container when you want to scale up your API.
 
-sometext
 
-<a name="usage"></a>
-## 2. Usage tips
 
-<a name="del"></a>
+<a name="api"></a>
+## 2. Build API using Python and Flask
+
+If we want to make our trained machine learning model available to other people, we have to use and write APIs.
+
+To build an *API* from our trained model, we will be using one of the most popular programming languages: *Python*. Its popularity is fueled by the tools it offers. *Flask*, a web framework, is one such tool, which is popular amongst the machine learning community.
+
+
+<a name="guni"></a>
 ## 3. Test
 
 
-We will use the following frameworks:
+
+
+
+
+<a name="docker"></a>
+## 4. Dockerization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
