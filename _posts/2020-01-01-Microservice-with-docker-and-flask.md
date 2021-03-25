@@ -24,7 +24,7 @@ Let's get started.
 
 ## Table of Contents
 
-This Page is divded into following parts:
+This Page is divided into following parts:
 
 1. [Prerequisites](#pre)
 1. [Building API using Python and Flask](#api)
@@ -42,6 +42,10 @@ pip install flask
 ## 1. Building our API using Python and Flask
 
 If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast.
+
+Let's implement a very basic Flask API for our ML model so that we can maintain multiple endpoints with ease.
+For each endpoint we create a own python file in our directory called `endpoints`.
+
 
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
 
