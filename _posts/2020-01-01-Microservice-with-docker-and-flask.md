@@ -34,20 +34,26 @@ This Page is divided into following parts:
 <a name="pre"></a>
 ## 1. Prerequisites
 
-```bash
-pip install flask
-```
-We assume we have following files:
-1. A trained model called `model.pkl` and saved in `models` folder.
-2. A `requirements.txt` file that looks like that:
+1. Create two folders: `api` and `nginx`. 
+2. Go to the `api` folder. 
+3. Create three folders: `endpoints`, `models` and `tests`
+4. Create a `requirements.txt` with following packages:
 
 ```bash
-flask
-gunicorn
-...
-
+Flask==1.1.2
+pytest==6.2.2
+gunicorn==19.10.0
 ```
 
+**Docker**
+Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
+
+
+**ML model**
+We have a trained model called `model.pkl` and saved in `models` folder.
+
+
+**Our flask-ml-api folder structure looks like this:**
 ```
 flask-ml-api
 | - api
