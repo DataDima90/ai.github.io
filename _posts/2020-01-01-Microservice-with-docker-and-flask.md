@@ -34,9 +34,9 @@ This Page is divded into following parts:
 <a name="api"></a>
 ## 1. Building our API using Python and Flask
 
-If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast.
+If we want to make our trained machine learning model available to other people, we have to use and write **API**s. **Flask** is one of the most popular framework for making **API**s easily and fast.
 
-The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
+The app.py is a python script which contains the **API** we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
 
 ```python
 from flask import Flask, request, render_template
