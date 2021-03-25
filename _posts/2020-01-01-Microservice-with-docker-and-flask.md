@@ -10,7 +10,7 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 # Building a Machine Learning Microservice using Flask, Gunicorn, Nginx and Docker
 
-Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models c****an be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
+Deployment of machine learning models is the process of making trained models available in production. In this post we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. The adavantages of deploying machine learning models in a container as microservices are simple: It improves **scalability**, **fault isolation** and enhances **speed**. 
 
 We will cover the following frameworks and topics:
 - **Flask** is a popular Python framework for making web *APIs* which is popular amongst the machine learning community.
@@ -34,26 +34,10 @@ This Page is divided into following parts:
 <a name="pre"></a>
 ## 1. Prerequisites
 
-1. Create two folders: `api` and `nginx`. 
-2. Go to the `api` folder. 
-3. Create three folders: `endpoints`, `models` and `tests`
-4. Create a `requirements.txt` with following packages:
-
-```bash
-Flask==1.1.2
-pytest==6.2.2
-gunicorn==19.10.0
-```
-
-**Docker**
 Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
 
+**This is how our project looks like:**
 
-**ML model**
-We have a trained model called `model.pkl` and saved in `models` folder.
-
-
-**Our flask-ml-api folder structure looks like this:**
 ```
 flask-ml-api
 | - api
@@ -75,6 +59,18 @@ flask-ml-api
     | - Dockerfile
 | - docker-compose.yml
 ```
+
+As you can see, the `api` and `nginx` live in different Docker containers. We will be using docker-compose to connect the two, so that **Nginx** will handle requests to the API via **Gunicorn**.
+
+Install all packages we require for this project with our `requirements.txt` file:
+
+```bash
+Flask==1.1.2
+pytest==6.2.2
+gunicorn==19.10.0
+```
+
+As you can see, we have already a trained model called `model.pkl` and saved in `models` folder.
 
 <a name="api"></a>
 ## 1. Building our API using Python and Flask
