@@ -38,13 +38,22 @@ This Page is divided into following parts:
 pip install flask
 ```
 
+We assume we have already a trained model `model.pkl` in `models` folder.
+
+```
+**flask-ml-api**
+| - **api**
+    | - **models**
+        | - model.pkl
+```
+
 <a name="api"></a>
 ## 1. Building our API using Python and Flask
 
-If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast.
+If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for making APIs easily and fast. If we wanna manage multiple endpoints for our machine learning then we get in trouble because we would stuff all code into one file. For this problem **Flask** provides blueprints.
 
 Let's implement a very basic Flask API for our ML model so that we can maintain multiple endpoints with ease.
-For each endpoint we create a own python file in our directory called `endpoints`.
+At first we create our new directory called `endpoints`. For each endpoint we create a own python file in our folder. Initalize it with a blank file named `__init__.py`.
 
 
 The app.py is a python script which contains the API we built for our Machine Learning model using flask. We defined the API endpoint and the path, how we receive data from the web application, how the data is being processed and how predictions are being returned as a response.
