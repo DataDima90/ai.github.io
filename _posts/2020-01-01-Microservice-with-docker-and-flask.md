@@ -12,23 +12,14 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 Deployment of machine learning models is the process of making trained models available in production. Here we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. 
 
-**This are our steps:**
+**We will cover the following steps, topics and frameworks:**
 
-1) How to write a simple, easily extendable Flask API and make it modular using Flask Blueprints
-2) How to make our Flask API for production using Gunicorn WSGI
-3) How to set up the Flask API and Nginx inside docker
-4) How tw assemble our Docker Containers using docker-compose
-5) How to test our Flask API using pytest
-
-
-We will cover the following frameworks and topics:
-
-- **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
-- **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
-- **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
-- **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here. Make sure you have it installed.
-- **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. Make sure you have it installed.
-- **Pytest** helps us to write better code because it allows us to write tests fast and reliable. Moreover it reduces boilerplate code to the minimum and still remains readable. In our case we wanna write unit tests for our Flask API. 
+1) How to write a simple Flask API and make it modular using Flask Blueprints: **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
+2) How to make our Flask API for production using Gunicorn WSGI: **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
+3) How to set up the Flask API inside docker: **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here. Make sure you have it installed.
+4) How to set up the Nginx inside docker: **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
+5) How tw assemble our Docker Containers using docker-compose: **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. Make sure you have it installed.
+6) How to test our Flask API using pytest: **Pytest** helps us to write better code because it allows us to write tests and that fast and reliable. Moreover it reduces boilerplate code to the minimum and still remains readable. In our case we wannt to write unit tests for our Flask API. 
 
 The whole code in this post is available on my GitHub.
 
