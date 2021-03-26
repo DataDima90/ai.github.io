@@ -28,9 +28,9 @@ Let's get started.
 This Page is divided into following parts:
 
 1. [Prerequisites](#pre)
-1. [Building API using Python and Flask](#api)
-2. [Using Gunicorn WSGI](#guni)
-3. [Dockerization](#docker)
+2. [Building API using Python and Flask](#api)
+3. [Using Gunicorn WSGI](#guni)
+4. [Dockerization of our API](#docker)
 
 <a name="pre"></a>
 ## 1. Prerequisites
@@ -173,10 +173,9 @@ To query and test the API you can use Postman.
 <a name="guni"></a>
 ## 3. Using Gunicorn WSGI for production
 
-Gunicorn is a necessary componenent for getting Flask into production. A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Instead, Flask is designed to be used with other WSGI-compliant web server. For this post, (and in the template) we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
+Gunicorn is a necessary componenent for getting Flask into production. A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Instead, Flask is designed to be used with other WSGI-compliant web server. In this template we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
 
-
-Next, we create a wsgi.py file and add the following code:
+Let's create a wsgi.py file and add the following code:
 
 ```python
 # api/wsgi.py
@@ -195,7 +194,7 @@ Now, instead of starting our API by running python app.py, we will use now this:
 $ gunicorn -w 3 -b :8080 -t 30 --reload wsgi:app
 ```
 
-Instead of typing the above code ever time we can create a `run.sh` file and copy the above code:
+Instead of typing the above long code we can create a `run.sh` file and copy the above code:
 
 ```bash
 # api/run.sh
@@ -203,13 +202,67 @@ Instead of typing the above code ever time we can create a `run.sh` file and cop
 gunicorn --workers 8 --bind 0.0.0.0:8080 wsgi:app --timeout 5  --log-level info
 ```
 
-Now we can run the code with following command:
+Now, we can run the code with following command:
 
 ```bash
 bash run.sh
 ```
 
 When we run this command, we start app.py using the app from the wsgi.py. We are also asking Gunicorn to setup 3 worker threads, set the port to 8080, set timeout to 30 secondes, and allow hot-reloading the app.py file, so that it rebuilds immediatly if the code in app.py changes.
+
+<a name="docker"></a>
+## 4. Dockerization of our API
+
+A Dockerfile is a text file that defines a Docker Image. We will use a Dockerfile to create our own custom Docker image because the base image we want to use for our project does not meet our required needs.
+
+This is how our Dockerfile looks like:
+
+```python
+FROM python:3.8
+
+# This prevents Python from writing out pyc files
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# This keeps Python from buffering stdin/stdout
+ENV PYTHONUNBUFFERED 1
+
+# install system dependencies
+RUN apt-get update \
+    && apt-get -y install gcc make \
+    && rm -rf /var/lib/apt/lists/*
+
+# install dependencies
+RUN pip install --no-cache-dir --upgrade pip
+
+# set work directory
+WORKDIR /src/api
+
+# copy requirements.txt
+COPY ./requirements.txt /src/api/requirements.txt
+
+# install project requirements
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy project
+COPY . .
+
+# Generate pickle file
+WORKDIR /src/api
+
+CMD ["gunicorn", "-w", "3", "-b", ":5000", "-t", "30", "--reload", "api.wsgi:app"]
+```
+
+In our Dockerfile, we pulled the Docker base image which is python:3.8, updated the system dependencies, installed the packages in the requirements.txt file, ran the ML code to train the model and generate the pickle file which the API will use and lastly run the server locally.
+
+Now let's build our Docker image from the Dockerfile we have created using this command:
+
+```bash
+docker build -t model:1.0 .
+```
+
+
+<a name="nginx"></a>
+## 4. Dockerization of our Nginx web server
 
 ## Nginx 
 Nginx is our web server, which will handle all requests and act as a load balancer for the application.
