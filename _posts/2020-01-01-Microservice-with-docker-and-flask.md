@@ -12,16 +12,16 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 Deployment of machine learning models is the process of making trained models available in production. Here we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. 
 
-**Our steps:**
+**Our steps**
 
-1) How to write a simple, easily extendable Flask API and make it modular using Flask Blueprints
+1) How to write a simple Flask API and make it easily extendable using Flask Blueprints
 2) How to make our Flask API for production using Gunicorn WSGI
 3) How to set up the Flask API and Nginx inside docker
 4) How tw assemble our Docker Containers using docker-compose
 5) How to test our Flask API using pytest
 
 
-**We will cover the following steps, topics and frameworks:**
+**We will cover the following topics and frameworks:**
 
 - **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
 -**Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
@@ -409,6 +409,39 @@ To query the API on **GET** `0.0.0.0/prediction` we can use Postman.
 
 <a name="testing"></a>
 ## 7. Testing our ML API using pytest
+We will be using `pytest` to write and execute tests. With ML APIs, we concentrate our testing efforts on making sure that our API can handle weird JSON input, invalid input and provide response codes. To test the result of the prediction is bad practice and should happen in the validation stage of our model development.
+
+This is what our `test_prediction.py` looks like:
+
+```python
+# tests/pytest_prediction.py
+
+from api.endpoints.prediction import prediction_api
+from flask import Flask
+import pytest
+import json
+
+app = Flask(__name__)
+app.register_blueprint(prediction_api)
+
+
+@pytest.fixture
+def client():
+    with app.test_client() as client:
+        yield client
+
+
+def test_predict_single(client):
+    response = client.get("/prediction")
+    assert response.status_code == 200
+    assert json.loads(response.get_data(as_text=True)) is not None
+```
+
+The test itself is a Flask app, because our endpoints live as Flask Blueprints.
+
+- We call `register_blueprint()` and pass in the prediction_api blueprint we created in `prediction.py`
+- Following this, we will store the `app.test_client()` in a local tester variable. This will give us access to the API, as if we are hitting it with actual traffic.
+
 
 
 
