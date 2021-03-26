@@ -25,7 +25,7 @@ Deployment of machine learning models is the process of making trained models av
 - **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
 - **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
 - **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide [here](https://docs.docker.com/get-docker/).
-- **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
+- **Nginx** is a highly stable web server, which will handle all requests and provides benefits such as load-balancing, SSL configuration, etc.
 - **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. Follow the installation guide [here]( https://docs.docker.com/compose/install/).
 - **Pytest** helps us to write better code because it allows us to write tests and that fast and reliable. Moreover it reduces boilerplate code to the minimum and still remains readable. In our case we wannt to write unit tests for our Flask API. 
 
@@ -84,8 +84,7 @@ Flask==1.1.2
 pytest==6.2.2
 gunicorn==19.10.0
 ```
-
-As you can see, we have already a trained model called `model.pkl` and saved in `models` folder. FYI: This model is a classifier with 3 classes and trained on iris dataset, i.e. it has 4 input features.
+For the purpose of this post, we will not dive deeply into how to build and train our ML model optimal. Instead, we will adapt the example of species classification using the iris dataset bundled within `scikit-learn`. After training we saved it as pickle file in `models` folder, called `model.pkl`
 
 <a name="api"></a>
 ## 2. Building a simple, easily extendable API using Python and Flask
@@ -478,6 +477,6 @@ WOW! We have successfully deployed our Machine Learning model as a production-re
 
 
 **Source:**
-- https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
-- 
+https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
+https://blog.usejournal.com/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
 
