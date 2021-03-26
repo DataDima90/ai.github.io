@@ -97,8 +97,9 @@ Let's see how we can build an endpoint:
 ```python
 # api/endpoints/prediction.py
 
-from flask import Blueprint
+from flask import Blueprint, request
 import pickle
+import json
 
 prediction_api = Blueprint('prediction_api', __name__)
 
@@ -108,8 +109,8 @@ MODEL = pickle.load(open("./models/model.pkl", 'rb+'))
 
 @prediction_api.route('/prediction')
 def prediction():
-    # sample feature values
-    sample = [1.0, 2.0, 3.0, 4.0]
+    # Get access to sample data stored in request
+    sample = [float(x) for x in json.loads(request.data).values()]
 
     # predict the species
     species = MODEL.predict([sample]).tolist()[0]
@@ -123,6 +124,7 @@ def prediction():
         s = "Virginica"
 
     return {"prediction": s}
+
 ```
 
 As you can see, we need to initializie our `prediction` API as a blueprint called `prediction_api`. After we have set up our first endpoint, we can add as many new endpoints as we like. In this way we can maintain each endpoint seperate in their own file easily. That's it, the prediction API is set up! 
@@ -438,7 +440,11 @@ def client():
 def test_predict_single(client):
     response = client.get(
         "/prediction",
-        data=json.dumps({"prediction:": "Hello world"}),
+        data=json.dumps({
+            "pl": 2,
+            "sl": 2,
+            "pw": 0.5,
+            "sw": 3}),
         content_type="application/json")
     assert response.status_code == 200
     assert json.loads(response.get_data(as_text=True)) is not None
@@ -452,8 +458,15 @@ The test itself is a Flask app, because our endpoints live as Flask Blueprints.
 Now, we can write the test function, which is `test_predict_single` in our case. Here we use `client.get` to do a GET requestion on the `/prediction` endpoint. The `data` and `content_type` are determined by what kind of request our API can handle. In this case, we are passing in a test JSON.
 
 ```bash
-{"prediction:": "Hello world"}
+{
+    "pl": 2,
+    "sl": 2,
+    "pw": 0.5,
+    "sw": 3}
 ```
+This is the JSON that our API should be able to decode, pass into the machine learning model which classifies it, and then send back the species of the iris types as a JSON.
+
+Our assert statements are testing to make sure that the status code returned is a sucess (which should be `200`) and that the data in the response is not `None`.
 
 To run the tests locally we can simply go the directory `/api` and use:
 
@@ -464,7 +477,7 @@ python -m pytest
 WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
 
 
-Source:
+**Source:**
 - https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
 - 
 
