@@ -34,7 +34,7 @@ This Page is divided into following parts:
 <a name="pre"></a>
 ## 1. Prerequisites
 
-Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
+Docker is a great way to make the API easy to deploy on any server. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
 
 **This is how our project looks like:**
 
@@ -54,6 +54,7 @@ flask-ml-api
     | - wsgi.py
     | - requirements.py
     | - Dockerfile
+    | - run.sh
 | - nginx
     | - nginx.conf
     | - Dockerfile
@@ -131,45 +132,25 @@ if __name__ == '__main__':
 ```
 Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
 
+
 <a name="guni"></a>
-## 2. Test
-
-
-
-
-
-
-<a name="docker"></a>
-## 3. Dockerization
-
-Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
-
-
-
-
-
 ## Using Gunicorn WSGI for production
-Gunicorn is a necessary componenent for getting Flask into production. 
-WSGI stands for "Web Server Gateway Interface". A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production.Instead, Flask is designed to be used with other WSGI-compliant web server. For this post, (and in the template) we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
 
+Gunicorn is a necessary componenent for getting Flask into production. A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Instead, Flask is designed to be used with other WSGI-compliant web server. For this post, (and in the template) we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
 
-
-Installing Gunicorn by typing command:
-
-```bash
-pip install gunicorn
-```
 
 Next, we create a wsgi.py file and add the following code:
 
 ```python
+# api/wsgi.py
+
 from app import app
 
 
 if __name__ == '__main__':
     app.run(use_reloader=True, debug=True)
 ```
-The wsgi.py is typically referred to as a WSGI entrypoint. What is WSGI, you ask? It stands for 'Web Server Gateway Interface', and – in short – it's a specification defining how a web server can interact with Python applications.
+The wsgi.py is typically referred to as a WSGI entrypoint.
 
 Now, instead of starting our API by running python app.py, we will use now this:
 
@@ -177,14 +158,26 @@ Now, instead of starting our API by running python app.py, we will use now this:
 $ gunicorn -w 3 -b :8080 -t 30 --reload wsgi:app
 ```
 
+Instead of typing the above code ever time we can create a `run.sh` file and copy the above code:
+
+```bash
+# api/run.sh
+
+gunicorn --workers 8 --bind 0.0.0.0:8080 wsgi:app --timeout 5  --log-level info
+```
+
+Now we can run the code with following command:
+
+```bash
+bash run.sh
+```
+
 When we run this command, we start app.py using the app from the wsgi.py. We are also asking Gunicorn to setup 3 worker threads, set the port to 8080, set timeout to 30 secondes, and allow hot-reloading the app.py file, so that it rebuilds immediatly if the code in app.py changes.
-
-
 
 ## Nginx 
 Nginx is our web server, which will handle all requests and act as a load balancer for the application.
 
-In our nginx folder, we create two files. First file, nginx.conf, contains:
+In our nginx folder, we have two files. First file, nginx.conf, contains:
 
 ```python
 worker_processes  3;
@@ -222,11 +215,6 @@ COPY nginx.conf /etc/nginx/
 ```
 
 **Description:** Creates a Docker containter with the nginx image, then copies the nginx config to it.
-
-
-
-
-- Docker is a great way to make the API easy to deploy on any server. 
 
 
 
