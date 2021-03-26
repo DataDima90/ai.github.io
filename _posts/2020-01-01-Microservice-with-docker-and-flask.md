@@ -79,7 +79,7 @@ As you can see, we have already a trained model called `model.pkl` and saved in 
 <a name="api"></a>
 ## 1. Building a simple, easily extendable API using Python and Flask
 
-If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for building APIs.
+If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for building APIs with Python.
 
 Let's see how we can build an endpoint:
 
@@ -137,9 +137,41 @@ if __name__ == '__main__':
 ```
 Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
 
+Let's test our api. Go to your `/api` directory and run `app.py` to start the API on localhost:
+
+```python
+python app.py
+```
+
+If successful you should see a result like this:
+
+```bash
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+```
+
+You will find the localhost URL with port in the above terminal output of this command.
+
+Our URL is: **GET** 0.0.0.0:8080/prediction
+
+The request body looks like:
+
+```
+{
+  "prediction": "Virginica"
+}
+```
+
+To query and test the API you can use Postman.
+
+
 
 <a name="guni"></a>
-## Using Gunicorn WSGI for production
+## 3. Using Gunicorn WSGI for production
 
 Gunicorn is a necessary componenent for getting Flask into production. A WSGI is the middleman between our Flask application and our web server. Flask has a build-in WSGI but it is not build for production. Instead, Flask is designed to be used with other WSGI-compliant web server. For this post, (and in the template) we will use Gunicorn. It's a solid piece of kit. However, it isn't the only option, there's **twisted** and **uWSGI** too, for example. 
 
