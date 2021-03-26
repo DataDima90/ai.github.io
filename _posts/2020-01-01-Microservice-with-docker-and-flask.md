@@ -29,11 +29,16 @@ This Page is divided into following parts:
 
 1. [Prerequisites](#pre)
 2. [Building API using Python and Flask](#api)
-3. [Using Gunicorn WSGI](#guni)
+3. [Using Gunicorn WSGI for production](#guni)
 4. [Dockerization of our API](#docker)
+5. [Dockerization of our Nginx web server](#nginx)
+6. [Assembling our Docker Containers using Docker-Compose](#compose)
+7. [Testing our ML API](#testing)
 
 <a name="pre"></a>
 ## 1. Prerequisites
+
+Let's make sure we have Docker and `docker-compose` installed. 
 
 **This is how our project looks like:**
 
@@ -214,6 +219,7 @@ A Dockerfile is a text file that defines a Docker Image. We will use a Dockerfil
 This is how our Dockerfile looks like:
 
 ```python
+# api/Dockerfile
 FROM python:3.8
 
 # This prevents Python from writing out pyc files
@@ -274,14 +280,14 @@ docker ps
 ```
 
 <a name="nginx"></a>
-## 4. Dockerization of our Nginx web server
+## 5. Dockerization of our Nginx web server
 
 Nginx is our web server, which will handle all requests and act as a load balancer for the application.
 
 In our nginx folder, we have two files. First file, nginx.conf, contains:
 
 ```python
-nginx/nginx.conf
+# nginx/nginx.conf
 
 worker_processes  3;
 
@@ -310,7 +316,7 @@ http {
 
 Our Dockerfile for nginx:
 
-```
+```bash
 # nginx/Dockerfile
 
 FROM nginx:1.15.2
@@ -321,7 +327,7 @@ COPY nginx.conf /etc/nginx/
 
 
 <a name="compose"></a>
-## 4. Docker Compose
+## 6. Docker Compose
 Finally, ware ready to create the most important file that will manage our two Docker containers
 
 In the root folder of the project, ad following code in `docker-compose.yml`:
@@ -362,22 +368,38 @@ networks:
 
 In our docker-compose we have two services (containers), one for our `api` folder and another for our `nginx` folder. Our network is arbitrarily named `apinetwork`
 
-**For `api` service:**
+**Our `api` service:**
 - name of our container is `flask-ml-api`
 - `restart: always` allows our api to hot reload when files change
 - we build the `/api` folder
 - `volumes: ['./src/api:/src/api']` is necessary to keep our local and docker api folders in sync. This is also necessary step for hot-reloading when we update our `app.py` file.
 - we makr this container to be part of the `apinetwork`, and expose port 5000, where `5000:5000` says that port 5000 in our Docker ocntainer will be same as 5000 on our local.
 
-**For our `nginx` service:**
-- we do the same setup as our api, but we expose 8080, where `80:8080` means that port 8080 of our Docker container is accessed on port 80 locally.
+**Our `nginx` service:**
+
+We do the same setup as our api, but we expose 8080, where `80:8080` means that port 8080 of our Docker container is accessed on port 80 locally.
 
 **Our connection flow looks like this:**
+
 1) We query on port 80 on our localhost, which is sent on port 8080 on our apinetwork to nginx (remember, nginx is listening on port 8080)
 2) nginx transfers this request to port 5000 on the apinetwork (which is where Gunicorn will recieve the request)
 3) Gunicorn passes this request to Flask
 
 
+Let's run the following on our terminal to start docker-compose, setup the containers and start the API:
+
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+If successful, we should be able to access our API on localhost at port 80.
+
+To query the API on **GET** `0.0.0.0/prediction` we can use Postman.
+
+<a name="testing"></a>
+## 7. Testing our ML API
+
+dfjaksdjf
 
 WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
 
