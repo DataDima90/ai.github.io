@@ -29,7 +29,7 @@ Deployment of machine learning models is the process of making trained models av
 - **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. Make sure you have it installed.
 - **Pytest** helps us to write better code because it allows us to write tests and that fast and reliable. Moreover it reduces boilerplate code to the minimum and still remains readable. In our case we wannt to write unit tests for our Flask API. 
 
-The whole code in this post is available on my GitHub[Github](https://github.com/datadima90)
+The whole code in this post is available on my [Github](https://github.com/datadima90)
 
 Let's get started.
 
