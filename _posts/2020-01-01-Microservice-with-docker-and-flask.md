@@ -173,13 +173,18 @@ The request body looks like:
 
 ```
 {
-  "prediction": "Virginica"
+    "pl": 2,
+    "sl": 2,
+    "pw": 0.5,
+    "sw": 3
 }
 ```
 
-To query and test the API you can use Postman.
+To query and test the API you can use Postman:
 
+![]({{ site.url }}/assets/img/posts/postman_screenshot.png)
 
+Voila!!! It works. We got our Prediction
 
 <a name="guni"></a>
 ## 3. Using Gunicorn WSGI for production
