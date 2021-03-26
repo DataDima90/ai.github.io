@@ -34,6 +34,7 @@ This Page is divided into following parts:
 <a name="pre"></a>
 ## 1. Prerequisites
 
+**Docker**
 Docker is a great way to make the API easy to deploy on any server. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
 
 **This is how our project looks like:**
@@ -63,7 +64,8 @@ flask-ml-api
 
 As you can see, the `api` and `nginx` live in different Docker containers. We will be using docker-compose to connect the two, so that **Nginx** will handle requests to the API via **Gunicorn**.
 
-Install all packages we require for this project with our `requirements.txt` file:
+**requirements.txt**
+Install all packages we require with our `requirements.txt` file:
 
 ```bash
 Flask==1.1.2
@@ -71,12 +73,15 @@ pytest==6.2.2
 gunicorn==19.10.0
 ```
 
+**ML model**
 As you can see, we have already a trained model called `model.pkl` and saved in `models` folder. This model is a classifier with 3 classes and trained on iris dataset, i.e. it has 4 input features.
 
 <a name="api"></a>
 ## 1. Building a simple, easily extendable API using Python and Flask
 
 If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for building APIs.
+
+Let's see how we can build an endpoint:
 
 ```python
 # api/endpoints/prediction.py
@@ -109,9 +114,9 @@ def prediction():
     return {"prediction": s}
 ```
 
-As you can see, we need to initializie our `prediction` API as a blueprint called `prediction_api`. Now that we have set up our first endpoint, we can add as many new endpoints as we like. In this way we can maintain each endpoint seperate in their own file easily. That's it, the prediction API is set up! 
+As you can see, we need to initializie our `prediction` API as a blueprint called `prediction_api`. After we have set up our first endpoint, we can add as many new endpoints as we like. In this way we can maintain each endpoint seperate in their own file easily. That's it, the prediction API is set up! 
 
-Now we can simply import the blueprint `prediction_api` and use it in our Flask `app.py`:
+Finally, we can simply import the blueprint `prediction_api` and use it in our Flask `app.py`:
 
 ```python
 # api/app.py
