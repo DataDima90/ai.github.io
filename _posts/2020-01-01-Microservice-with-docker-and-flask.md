@@ -12,19 +12,19 @@ summary: Building a Machine Learning Microservice using Flask, Gunicorn, Nginx a
 
 Deployment of machine learning models is the process of making trained models available in production. Here we will learn how machine learning models can be deployed in a dockerized environment using Flask, Gunicorn and Nginx in Python environment. 
 
-**Our steps are as follows:**
+**Our Workflow will look like this :**
 
-1) Write a simple API and make it easily extendable using Flask Blueprints
-2) Make our Flask API production-ready using Gunicorn WSGI
-3) Set up the Flask API and Nginx inside docker
-4) Assemble our Docker Containers using docker-compose
-5) Test our Flask API using pytest
+1) We write a simple API and make it easily extendable using Flask Blueprints 
+2) We make our Flask API production-ready using Gunicorn WSGI 
+3) We set up the Flask API and Nginx inside docker 
+4) We assemble our Docker Containers using docker-compose 
+5) We test our Flask API using pytest 
 
 
 **We will cover the following topics and frameworks:**
 
 - **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
--**Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
+- **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
 - **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here. Make sure you have it installed.
 - **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
 - **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. Make sure you have it installed.
