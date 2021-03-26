@@ -17,7 +17,16 @@ We will cover the following frameworks and topics:
 - **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
 - **Nginx** is our web server, which will handle all requests and act as a load balancer for the application.
 - **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here.
+- **Docker-Compose** is a great way for defining and running multi-container Docker applications. With Compose, we will use a YAML file to configure our application’s services. Then, with a single command, we create and start all the services from our configuration. 
+- **Pytest** helps us to write better code because it allows us to write tests fast and reliable. MOreover it reduces boilerplate code to the minimum and still remains readable. In our case we wanna write unit tests for our Flask API. 
 
+What we will do:
+
+1) How to write a simple, easily extendable Flask API and make it modular using Flask Blueprints
+2) How to make our Flask API for production using Gunicorn WSGI
+3) How to set up the Flask API and Nginx inside docker
+4) How tw assemble our Docker Containers using docker-compose
+5) How to test our Flask API using pytest
 
 The whole code in this post is available on my GitHub.
 
@@ -33,7 +42,7 @@ This Page is divided into following parts:
 4. [Dockerization of our API](#docker)
 5. [Dockerization of our Nginx web server](#nginx)
 6. [Assembling our Docker Containers using Docker-Compose](#compose)
-7. [Testing our ML API](#testing)
+7. [Testing our ML API using pytest](#testing)
 
 <a name="pre"></a>
 ## 1. Prerequisites
@@ -78,7 +87,7 @@ gunicorn==19.10.0
 As you can see, we have already a trained model called `model.pkl` and saved in `models` folder. FYI: This model is a classifier with 3 classes and trained on iris dataset, i.e. it has 4 input features.
 
 <a name="api"></a>
-## 1. Building a simple, easily extendable API using Python and Flask
+## 2. Building a simple, easily extendable API using Python and Flask
 
 If we want to make our trained machine learning model available to other people, we have to use and write APIs. **Flask** is one of the most popular framework for building APIs with Python.
 
@@ -397,9 +406,9 @@ If successful, we should be able to access our API on localhost at port 80.
 To query the API on **GET** `0.0.0.0/prediction` we can use Postman.
 
 <a name="testing"></a>
-## 7. Testing our ML API
+## 7. Testing our ML API using pytest
 
-dfjaksdjf
+
 
 WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
 
