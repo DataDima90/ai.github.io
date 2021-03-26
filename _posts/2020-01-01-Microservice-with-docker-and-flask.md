@@ -14,11 +14,11 @@ Deployment of machine learning models is the process of making trained models av
 
 **Our Workflow will look like this :**
 
-1) We write a simple API and make it easily extendable using Flask Blueprints \n
-2) We make our Flask API production-ready using Gunicorn WSGI \n
-3) We set up the Flask API and Nginx inside docker \n
-4) We assemble our Docker Containers using docker-compose \n
-5) We test our Flask API using pytest
+1. We write a simple API and make it easily extendable using Flask Blueprints
+2. We make our Flask API production-ready using Gunicorn WSGI
+3. We set up the Flask API and Nginx inside docker
+4. We assemble our Docker Containers using docker-compose
+5. We test our Flask API using pytest
 
 **We will cover the following topics and frameworks:**
 
