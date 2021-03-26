@@ -40,7 +40,7 @@ This Page is divided into following parts:
 1. [Prerequisites](#pre)
 2. [Building API using Python and Flask](#api)
 3. [Using Gunicorn WSGI for production](#guni)
-4. [Dockerization of our API](#docker)
+4. [Dockerization of our Flask API](#docker)
 5. [Dockerization of our Nginx web server](#nginx)
 6. [Assembling our Docker Containers using Docker-Compose](#compose)
 7. [Testing our ML API using pytest](#testing)
@@ -222,7 +222,7 @@ bash run.sh
 When we run this command, we start app.py using the app from the wsgi.py. We are also asking Gunicorn to setup 3 worker threads, set the port to 8080, set timeout to 30 secondes, and allow hot-reloading the app.py file, so that it rebuilds immediatly if the code in app.py changes.
 
 <a name="docker"></a>
-## 4. Dockerization of our API
+## 4. Dockerization of our Flask API
 
 A Dockerfile is a text file that defines a Docker Image. We will use a Dockerfile to create our own custom Docker image because the base image we want to use for our project does not meet our required needs.
 
@@ -338,9 +338,9 @@ COPY nginx.conf /etc/nginx/
 
 <a name="compose"></a>
 ## 6. Docker Compose
-Finally, ware ready to create the most important file that will manage our two Docker containers
+Finally, we are ready to create the most important file that will manage our two Docker containers.
 
-In the root folder of the project, ad following code in `docker-compose.yml`:
+In the root folder of the project, add following code in `docker-compose.yml`:
 
 ```bash
 # docker-compose.yml
@@ -381,7 +381,7 @@ In our docker-compose we have two services (containers), one for our `api` folde
 **Our `api` service:**
 - name of our container is `flask-ml-api`
 - `restart: always` allows our api to hot reload when files change
-- we build the `/api` folder
+- we build the `src/api` folder
 - `volumes: ['./src/api:/src/api']` is necessary to keep our local and docker api folders in sync. This is also necessary step for hot-reloading when we update our `app.py` file.
 - we makr this container to be part of the `apinetwork`, and expose port 5000, where `5000:5000` says that port 5000 in our Docker ocntainer will be same as 5000 on our local.
 
@@ -391,12 +391,12 @@ We do the same setup as our api, but we expose 8080, where `80:8080` means that 
 
 **Our connection flow looks like this:**
 
-1) We query on port 80 on our localhost, which is sent on port 8080 on our apinetwork to nginx (remember, nginx is listening on port 8080)
-2) nginx transfers this request to port 5000 on the apinetwork (which is where Gunicorn will recieve the request)
-3) Gunicorn passes this request to Flask
+1. We query on port 80 on our localhost, which is sent on port 8080 on our apinetwork to nginx (remember, nginx is listening on port 8080)
+2. nginx transfers this request to port 5000 on the apinetwork (which is where Gunicorn will recieve the request)
+3. Gunicorn passes this request to Flask
 
 
-Let's run the following on our terminal to start docker-compose, setup the containers and start the API:
+Let's run the following command on our terminal to start docker-compose, setup the containers and start the API:
 
 ```bash
 $ docker-compose build
@@ -431,7 +431,10 @@ def client():
 
 
 def test_predict_single(client):
-    response = client.get("/prediction")
+    response = client.get(
+        "/prediction",
+        data=json.dumps({"prediction:": "Hello world"}),
+        content_type="application/json")
     assert response.status_code == 200
     assert json.loads(response.get_data(as_text=True)) is not None
 ```
@@ -439,10 +442,19 @@ def test_predict_single(client):
 The test itself is a Flask app, because our endpoints live as Flask Blueprints.
 
 - We call `register_blueprint()` and pass in the prediction_api blueprint we created in `prediction.py`
-- Following this, we will store the `app.test_client()` in a local tester variable. This will give us access to the API, as if we are hitting it with actual traffic.
+- Following this, we create our `client()` function. This will give us access to the API, as if we are hitting it with actual traffic.
 
+Now, we can write the test function, which is `test_predict_single` in our case. Here we use `client.get` to do a GET requestion on the `/prediction` endpoint. The `data` and `content_type` are determined by what kind of request our API can handle. In this case, we are passing in a test JSON.
 
+```bash
+{"prediction:": "Hello world"}
+```
 
+To run the tests locally we can simply go the directory `/api` and use:
+
+```bash
+python -m pytest
+```
 
 WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
 
