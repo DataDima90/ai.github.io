@@ -14,15 +14,15 @@ Deployment of machine learning models is the process of making trained models av
 
 **We will cover the following steps, topics and frameworks:**
 
-**How to write a simple Flask API and make it modular using Flask Blueprints: **
+1) **How to write a simple Flask API and make it modular using Flask Blueprints?**
 
 **Flask** is a popular Python framework for making web APIs which is popular amongst the machine learning community.
 
-How to make our Flask API for production using Gunicorn WSGI: 
+2) **How to make our Flask API for production using Gunicorn WSGI?** 
 
 **Gunicorn** is a Python WSGI HTTP server and a common choice for self-hosting Flask application in production. Flask has a built-in WSGI (Server Gateway Interface) web server, but it is not secure or efficient and hence should NOT be used for production.
-**
-How to set up the Flask API inside docker: **
+
+3 **How to set up the Flask API inside docker?**
 
 **Docker** is a great way to make the API easy to deploy on any server. It is easily customizable to run with any configuration. Moreover, we can combine multiple instances of the docker container when we want to scale up our Flask API. Docker is available across various platforms whether if you are using a Linux, Mac or a Windows computer, you can follow the installation guide here. Make sure you have it installed.
 
