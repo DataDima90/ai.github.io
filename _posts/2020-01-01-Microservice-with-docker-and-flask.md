@@ -276,12 +276,13 @@ docker ps
 <a name="nginx"></a>
 ## 4. Dockerization of our Nginx web server
 
-## Nginx 
 Nginx is our web server, which will handle all requests and act as a load balancer for the application.
 
 In our nginx folder, we have two files. First file, nginx.conf, contains:
 
 ```python
+nginx/nginx.conf
+
 worker_processes  3;
 
 events { }
@@ -310,38 +311,75 @@ http {
 Our Dockerfile for nginx:
 
 ```
+# nginx/Dockerfile
+
 FROM nginx:1.15.2
 
 RUN rm /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/
 ```
 
-**Description:** Creates a Docker containter with the nginx image, then copies the nginx config to it.
 
+<a name="compose"></a>
+## 4. Docker Compose
+Finally, ware ready to create the most important file that will manage our two Docker containers
 
-
-
-
-
-
-
-If successful you should see a result like this:
+In the root folder of the project, ad following code in `docker-compose.yml`:
 
 ```bash
- * Serving Flask app "app" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: off
- * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
-```
-To check if your docker container is running, use this command:
+# docker-compose.yml
 
-```bash
-docker ps
+version: '3'
+
+services:
+
+  api:
+    container_name: flask-ml-api
+    restart: always
+    build: ./src/api
+    volumes: ['./src/api:/src/api']
+    networks:
+      - apinetwork
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    networks:
+      - apinetwork
+    expose:
+      - "8080"
+    ports:
+      - "80:8080"
+
+networks:
+  apinetwork:
 ```
 
-WOW! We have successfully deployed our Machine Learning model using docker.
+In our docker-compose we have two services (containers), one for our `api` folder and another for our `nginx` folder. Our network is arbitrarily named `apinetwork`
+
+**For `api` service:**
+- name of our container is `flask-ml-api`
+- `restart: always` allows our api to hot reload when files change
+- we build the `/api` folder
+- `volumes: ['./src/api:/src/api']` is necessary to keep our local and docker api folders in sync. This is also necessary step for hot-reloading when we update our `app.py` file.
+- we makr this container to be part of the `apinetwork`, and expose port 5000, where `5000:5000` says that port 5000 in our Docker ocntainer will be same as 5000 on our local.
+
+**For our `nginx` service:**
+- we do the same setup as our api, but we expose 8080, where `80:8080` means that port 8080 of our Docker container is accessed on port 80 locally.
+
+**Our connection flow looks like this:**
+1) We query on port 80 on our localhost, which is sent on port 8080 on our apinetwork to nginx (remember, nginx is listening on port 8080)
+2) nginx transfers this request to port 5000 on the apinetwork (which is where Gunicorn will recieve the request)
+3) Gunicorn passes this request to Flask
+
+
+
+WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
 
 
 Source:
