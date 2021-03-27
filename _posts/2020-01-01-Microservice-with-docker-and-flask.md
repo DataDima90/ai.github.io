@@ -214,7 +214,7 @@ Instead of typing the above long code we can create a `run.sh` file and copy the
 ```bash
 # api/run.sh
 
-gunicorn --workers 3 --bind 0.0.0.0:8080 --reload wsgi:app --timeout 30  --log-level info
+gunicorn --workers 3 --bind 0.0.0.0:8080 --reload api.wsgi:app --timeout 30  --log-level info
 ```
 
 Now, we can run the code with following command:
