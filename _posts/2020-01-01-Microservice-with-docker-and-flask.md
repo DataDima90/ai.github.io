@@ -81,7 +81,7 @@ Install all packages we require with our `requirements.txt` file:
 
 ```bash
 Flask==1.1.2
-pytest==6.2.2
+pytest==4.6.11
 gunicorn==19.10.0
 ```
 For the purpose of this post, we will not dive deeply into how to build and train our ML model optimal. Instead, we will adapt the example of species classification using the iris dataset bundled within `scikit-learn`. After training we saved it as pickle file in `models` folder, called `model.pkl`
@@ -103,7 +103,7 @@ import json
 prediction_api = Blueprint('prediction_api', __name__)
 
 # load our ML model
-MODEL = pickle.load(open("./models/model.pkl", 'rb+'))
+MODEL = pickle.load(open("api/models/model.pkl", 'rb+'))
 
 
 @prediction_api.route('/prediction')
@@ -123,7 +123,6 @@ def prediction():
         s = "Virginica"
 
     return {"prediction": s}
-
 ```
 
 As you can see, we need to initializie our `prediction` API as a blueprint called `prediction_api`. After we have set up our first endpoint, we can add as many new endpoints as we like. In this way we can maintain each endpoint seperate in their own file easily. That's it, the prediction API is set up! 
@@ -134,7 +133,7 @@ Finally, we can simply import the blueprint `prediction_api` and use it in our F
 # api/app.py
 
 from flask import Flask
-from endpoints.prediction import prediction_api
+from api.endpoints.prediction import prediction_api
 
 # Create an instance of the Flask class with the default __name__
 app = Flask(__name__)
@@ -145,7 +144,6 @@ app.register_blueprint(prediction_api)
 if __name__ == '__main__':
     # listen on port 8080
     app.run(host="0.0.0.0", port=8080, debug=True)
-
 ```
 Now, when we start **Flask**, it will register the prediction blueprint and enable the `/prediction` endpoint. That's it!
 
@@ -197,7 +195,7 @@ Let's create a wsgi.py file and add the following code:
 ```python
 # api/wsgi.py
 
-from app import app
+from api.app import app
 
 
 if __name__ == '__main__':
@@ -216,7 +214,7 @@ Instead of typing the above long code we can create a `run.sh` file and copy the
 ```bash
 # api/run.sh
 
-gunicorn --workers 8 --bind 0.0.0.0:8080 wsgi:app --timeout 5  --log-level info
+gunicorn --workers 3 --bind 0.0.0.0:8080 --reload wsgi:app --timeout 30  --log-level info
 ```
 
 Now, we can run the code with following command:
@@ -253,47 +251,25 @@ RUN apt-get update \
 RUN pip install --no-cache-dir --upgrade pip
 
 # set work directory
-WORKDIR /src/api
+WORKDIR /api
 
 # copy requirements.txt
-COPY ./requirements.txt /src/api/requirements.txt
+COPY ./requirements.txt /api/requirements.txt
 
 # install project requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
 # copy project
-COPY . .
+COPY . /api
 
 # Generate pickle file
-WORKDIR /src/api
+WORKDIR /
 
 CMD ["gunicorn", "-w", "3", "-b", ":5000", "-t", "30", "--reload", "api.wsgi:app"]
 ```
 
 In our Dockerfile, we pulled the Docker base image which is python:3.8, updated the system dependencies, installed the packages in the requirements.txt file, ran the ML code to train the model and generate the pickle file which the API will use and lastly run the server locally.
 
-Now let's build our Docker image from the Dockerfile we have created using this command:
-
-```bash
-docker build -t model:1.0 .
-```
-
-If successful you should see a result like this:
-
-```bash
- * Serving Flask app "app" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: off
- * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
-```
-
-To check if your docker container is running, use this command:
-
-```bash
-docker ps
-```
 
 <a name="nginx"></a>
 ## 5. Dockerization of our Nginx web server
@@ -358,8 +334,8 @@ services:
   api:
     container_name: flask-ml-api
     restart: always
-    build: ./src/api
-    volumes: ['./src/api:/src/api']
+    build: ./api
+    volumes: ['./api:/api']
     networks:
       - apinetwork
     expose:
@@ -410,7 +386,11 @@ $ docker-compose up
 ```
 If successful, we should be able to access our API on localhost at port 80.
 
-To query the API on **GET** `0.0.0.0/prediction` we can use Postman.
+To query the API on **GET** `0.0.0.0/prediction` we can again use Postman:
+
+![]({{ site.url }}/assets/img/posts/postman_docker.png)
+
+YEAH! It works.
 
 <a name="testing"></a>
 ## 7. Testing our ML API using pytest
@@ -479,4 +459,6 @@ WOW! We have successfully deployed our Machine Learning model as a production-re
 **Source:**
 https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
 https://blog.usejournal.com/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
+https://medium.datadriveninvestor.com/from-model-inception-to-deployment-adce1f5ed9d6
+
 
