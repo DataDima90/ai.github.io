@@ -399,7 +399,7 @@ We will be using `pytest` to write and execute tests. With ML APIs, we concentra
 This is what our `test_prediction.py` looks like:
 
 ```python
-# tests/pytest_prediction.py
+# tests/test_prediction.py
 
 from api.endpoints.prediction import prediction_api
 from flask import Flask
@@ -447,7 +447,7 @@ This is the JSON that our API should be able to decode, pass into the machine le
 
 Our assert statements are testing to make sure that the status code returned is a sucess (which should be `200`) and that the data in the response is not `None`.
 
-To run the tests locally we can simply go the directory `/api` and use:
+To run the tests locally we can simply use:
 
 ```bash
 python -m pytest
