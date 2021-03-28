@@ -454,11 +454,3 @@ python -m pytest
 ```
 
 WOW! We have successfully deployed our Machine Learning model as a production-ready Microservice using Flask, Gunicorn, Nginx and Docker.
-
-
-**Source:**
-https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
-https://blog.usejournal.com/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
-https://medium.datadriveninvestor.com/from-model-inception-to-deployment-adce1f5ed9d6
-
-
