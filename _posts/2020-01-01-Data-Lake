@@ -1,0 +1,146 @@
+---
+layout: post
+title: Data Lake
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Data Lake, AWS]
+mathjax: true
+summary: How to create and operate a data lake in a secure and scalable way
+---
+
+
+# Data Lakes
+
+In this post we will understand what exactly a data lake is how to use AWS data related services to create and 
+operate a data lake in a secure and scalable way.
+
+What is a Data Lake?
+A data lake is a centralized repository that allows you to store all your structured and unstructured data at any scale. 
+You can store your data as-is, without having to first structure the data, and run different types of analytics—from dashboards 
+and visualizations to big data processing, real-time analytics, and machine learning to guide better decisions.
+
+### Value Propposition of Data Lakes
+Why to use data lakes? 
+
+It may be the case that you have an enormous database or (structured, semi-structured and unstructured) data is distributed across multple databases. 
+The first case, you may have typical load issues, in the second case, data cataloging and security may be challenging.
+
+The main reasons to invest in a data lake are:
+- to increase operational efficency
+- make data available from departmental silos
+- lower transactional costs, and
+- offload capacity from databases and data warehouses.
+
+One of the most significant advantages of a data lake is storing our data without having to think about its structure. 
+That's where the name lake comes from, being organic information, just like nature.  By decoupling storage from data processing, 
+you can use different data processing and data visualization components that look at the same data, and that's another advantage 
+of data lakes over databases or data warehouses.
+
+
+### Characteristics of Data Lakes
+Data lake encompasses multiple functions in the data spectrum, such as data ingestion, processing, machine learning, data visualization, and other components. 
+
+1. Data Lakes should be data-agnostic
+The first aspect is that data lake should be data-agnostic. In other words, data lakes should not be limited to store 
+ just one file type or data structure like usually a database do. Efficient data lakes allow you to store all kinds of data, such as pictures, data text 
+ in multiple formats, compressed or not, encrypted or not, audio, video, binary files, and everything else.
+
+Being data-agnostic and storing raw data gives you the advantage of using a more appropriate data processing tool to generate insights.
+
+2. Data Lakes are future proof
+ In a nutshell, data lakes allow you to dive in anywhere in the vast data collected to generate insights. 
+ We usually say that another characteristic of mature data lakes is the fact of being future proof.
+Let me better explain this. Being future proof here usually indicates that you may not have a business question today, 
+but if that business question arises in the future and you have data around that topic, the answer can potentially be right there. 
+With the re-use of the right processing and data visualization tools, you can generate insights that can help you a lot. 
+
+With correct data ingestion, cataloging, and processing to keep it organized, it will be delightful to extract insights from it.
+
+### Components of Data Lakes
+The four main components we would like to have in our data lake architecture:
+- Ingest and store
+- catalog and search
+- process and serve
+- protect and secure
+
+#### Ingest and store
+A data lake is not a mature data lake without proper data ingestion mechanisms, because data lakes are datagnostic.
+
+Use Case
+
+Imagine a company with a fleet of 100 trucks equipped with IoT devices. 
+Let's say the devices are equipped with GPS antennas and mobile connections providing the truck coordinates every second. 
+When this data is submitted, the system should provide trucks location in real time to it's users. If you do the math, 
+with 100 trucks providing data every second, you have 6000 datapoints per minutes, 360,000 datapoints every hour, 
+and way more than a million datapoints just during business hours. This requirement may need data ingestion and storage solutions 
+operating at a minimal latency on a large scale, which clearly is a challenge, especially if you don't use the right approach. 
+In this race for the lower latency, a better ingestion layer likely uses data streaming technologies such as services from the 
+Amazon Kinesis family or Amazon Managed Streaming for Apache Kafka. 
+
+Perhaps we could use a different data ingestion mechanism if the requirements were different in this scenario. 
+If we did not need to provide near real time insights to users, we could think about using an ingestion mechanism that consumes 
+data in batches and not streaming.
+
+#### Catalog and search
+Mature data lakes provide efficient indexing and searching mechanisms to quickly discover what data is stored and where.
+Data lakes can and should reach a high level of organization and catalog with the help of databases. 
+Regardless of whether the databases is SQL or no SQL, it is very important to have a quick and secure way to find 
+your data when you're looking for something.
+
+#### Process and serve
+ One of the main components of cloud computing is paying for what you use and nothing more. So if you just want to use Hadoop for storage, 
+ you may be paying for processing power while not using it. That does not mean Hadoop is not using data lakes, they play a big role and data lakes 
+ would not be a thing without it, but it makes more sense to use Hadoop only when we need to process something. That's why a cloud-native data lake uses 
+ dedicated storage services that only charge you for storage and nothing else. 
+ Typically in data lakes when you need to process something, you can spin up what we call a transient Hadoop cluster, do the processing, 
+ store the data back on S3 and then turn off the cluster. In addition to that, separating compute from storage gives you another benefit, 
+ which is the ability to use different compute and storage layers using the right tool for the job while optimizing for cost as well as performance. 
+ AWS has a service called AWS Glue which execute Hadoop jobs on demand where you only pay when there is a job running.
+
+#### Protect and secure
+ A mature data lake should provide all the components mentioned so far in a secure way with configurable permission mechanisms that prevent unauthorized users 
+ from accessing the data. Using AWS managed services gives you the ability to manage things like data retention, encryption, access control lists and refined 
+ governance standards.
+
+### What is the difference between Data Lakes, Data Warehousing and Databases.
+
+**Database**
+
+Databases usually have its storage and processing mechanisms tied together, making it less flexible to-scale storage without processing and vice versa.
+
+**Data Warehouse**
+
+1. Schema-on-read vs schema-on-write
+A data warehouse is usually a database optimized to perform analytical queries that leads to insights. But because it usually operates as an analytical database, 
+you need to create tables and define the table structure before adding your data into your data warehouse. 
+ When you create those tables, you have to set the table columns and data types, in order words, a data schema that generally needs information to be structured. 
+ When the schema needs to be populated and it needs to be determined before you write the data, you have what we call a schema-on-write architecture. 
+ Although schema-on-write is good for data normalization because it would reject data that does not fit in that specific format, it is not ideal for flexibility, 
+ which is where data lakes really shine. Data lakes are what we call schema-on-read. And that's the first fundamental difference between data lakes and data warehouses. 
+ Data lakes can handle unstructured data and mainly operate in a schema-on-read fashion. Which means that you do not need to concern with the data schema while ingesting 
+ the data to your data lake. That allow you to take care of the schema only when read data for some future processing. Hence the name schema-on-read. 
+ AWS has a service called Amazon Athena that allow you to match the table schema to your dataset and not the datasets to your table schema. 
+ And Amazon Athena table does not store data on itself. The tables are mostly metadata pointing to where the data is, and we commonly use Amazon S3 for that. With that being said, 
+ if something changes in terms of data structure in S3, you can change it in Athena table to match that change. Typically we end up creating another table in Amazon Athena.
+
+I'm defining that a data lake uses schema-on-read and data warehouses uses schema-on-write. Having schema-on-read on your data lakes gives you the flexibility that you need.
+
+2. Data Warehouses mostly use SQL
+data warehouses mostly use the SQL as the language for querying. That limits what you can do, and some engines even support the creation of user-defined functions and other functionalities 
+to extend that a little bit. Although that is good, having a custom compute framework based in a programming language like Spark and Python gives you more power and flexibility. 
+Because if you have statistical data, you can use compute frameworks that are exclusively focused on statistics. The same applies with machine learning, computer vision, 
+and other needs that you may have for your data lake, allowing you to reuse the right tool for the right job.
+
+3. Data warehouses work with structured data only, data lakes work with unstructured and structured data natively
+Since data needs to feed in a table in a data warehouse, you have to normalize and preformat that data to fit that table. And that limits you on the type of data that you can store in a table in your data warehouse. 
+
+Now, one thing is for sure, although data lakes and data warehouses are not the same thing, they should be used together to extract valuable insights. It is very common to see architectures ingesting 
+data to the data lake first, then cleaning and storing that data using data lake tools, and then storing that data into data warehouses that uses data visualization tools. 
+Some data warehouses may work faster because they work with structured data.
+
+
+
+### Data Lake Architectures
+
+
+
