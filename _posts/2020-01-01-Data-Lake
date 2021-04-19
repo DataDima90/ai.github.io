@@ -139,6 +139,9 @@ data to the data lake first, then cleaning and storing that data using data lake
 Some data warehouses may work faster because they work with structured data.
 
 
+![]({{ site.url }}/assets/img/posts/DWH_vs_DL.png)
+
+![]({{ site.url }}/assets/img/posts/DWH_DB.png)
 
 ### Data Lake Architectures
 
