@@ -8,7 +8,7 @@ mathjax: true
 summary: Data Collection Systems
 ---
 
-# Kinesis
+# Data Ingestion Tools on AWS
 
 Options for real-time data streaming solutions to the cloud using different technologies.
 Amazon Web Servies (AWS) provides various services to assist in ingesting data, such as:
@@ -16,7 +16,108 @@ Amazon Web Servies (AWS) provides various services to assist in ingesting data, 
 - Kinesis Video Streams,
 - Kinesis Firehose,
 - Managed Kafka (MSK), and
-- MQ
+- Message Queue (MQ) for Apache ActiveMQ or RabbitMQ
+- Database Migration Service
+- Glue
+
+
+**Understand scenarios where to use each service**
+- Kinesis Data Streams
+  - Use when you need custom producers and consumers
+  - Use cases that requires sub-second processing
+  - Use cases that require unlimited bandwith
+- Kinesis Firehose
+  - Use cases where you want to deliver directly to S3, Redshift, Elasticsearch, or Splunk
+  - Use cases where you tolerate latency of 60 seconds, or greater
+  - Use cases where you wish to transform your data or convert the data format
+- Database Migration Service
+  - Use cases when you need to migrate data from one database to another
+  - Use cases where you want to migrate a database to a different database engine
+- Glue
+  - Batch-oriented use cases where you want to perform an Extract, Transform and Load (ETL) process
+  - Not fur use cas with streaming use cases
+
+Understand how much throughput and bandwith each ingestion approach has as well as its ability to scale
+- Kinesis Data Streams
+  - Shards can handle up to 1,000 PUT records per second
+  - Can increase the number of shards in a stream without limit
+  - Each shard has a capacity of 1 MB per second for input and 2 MB per second output
+- Kinesis Firehose
+  - Automatically scales to accommodate the throughput of your stream
+- Database Migration Service
+  - EC2 instances used for the replication instance
+  - You need to scale your replication instance to accommodate your throughput
+- Glue
+  - Runs in a scale-out Apache Spark environment to move data to target system
+  - Scales via Data Processing Units (DPUs) for your ETL jobs
+
+Understand how each service remains available and handles faults
+- Kinesis Data Streams
+  - Synchronously replicates your shard data across 3 Availablity Zones
+- Kinesis Firehose
+  - Synchronously replicates your data across 3 Availablity Zones
+  - For S3 target, Firehose retries for 24 hours, failure persists past 24 hours your data is lost
+  - For Redshift you can specify a retry duration from 0 to 7,200 seconds
+  - For Elasticsearch you can specify a retry duration from 0 to 7,200 seconds
+  - For Splunk you use a retry duration counter. Firehose retries until counter expires, then backs up your data to S3.
+  - Retries may couse duplicate records. AWS uses at-least-once semantics for data delivery.
+- Database Migration Service
+  - Can use multi-AZ for replication that gives you fault tolerance via redundant replication servers
+- Glue
+  - Retries 3 times before making a marking an error condition
+  - Create a CloudWatch alert for failures that triggers an SNS message
+
+
+Understand how each service incurs cost
+- Kinesis Data Streams
+  - Pay per shard hour and PUt payload unit
+  - Extended data retention and enhanced fanout incur additional costs
+- Kinesis Firehose
+  - Pay for the volume of data ingested
+  - Pay for data conversions
+- Database Migration Service
+  - Pay for the EC2 compute resources you use when migrating
+  - Pay for log storage
+  - Data transfer fees
+- Glue
+  - Pay an hourly rate at a billing per second for both crawlers and ETL jobs
+  - Monthly fee for storing and accessing data in your Glue data catalog
+
+
+Problems with your streaming data or transforming Data when Ingesting
+- Data that is out of order
+- Data that is duplicated
+- Data where we need to change the format, e.g. from CSV DAta to Parquet Data
+- Data that needs to be compressed, e.g. from JSON to GZIP
+
+Methods to address these problems
+- Choose an ingestion service that has guaranteed ordering
+  - Guaranteed ordering:
+    - Kinesis Data Streams
+    - DynamoDB Streams
+- Choose ann ingestion service that addresses your data duplication requirements, i.e. needs to support de-duped derlivery
+  - De-duped delivery:
+    - DynamoDB Streams - exactly-once
+    - Kinesis Data Streams - at-least-once
+      - Embed a primary key in data records and remove duplicates later when processing
+    - Kinesis Data Firehose - at-least-once
+      - Crawl target data with Glue ML FindMatches Transform
+- Use conversion and compression feature of ingestion service
+  - Kinesis Data Streams:
+    - Use Lambda consumer to format or compress
+    - Use KCL application to format or compress
+  - Kinesis Firehose:
+    - Use format conversion feature if data in JSON, e.g. to Parquet
+    - Use Lambda transform to preprocess formation conversion feature if data not JSON
+    - Use S3 compression (GZIP, Snappy, or ZIP)
+    - Use GZIP COPY command option for Redshift compression
+  - Lambda:
+    - Convert the format of your data, e.g. GZIP to JSON
+    - Transform your data, e.g. expand strings into individual columns
+    - Filter your data to remove extraneous info
+    - Enrich your data, e.g. error correction
+  - Database Migration Service
+    - Table and schema transformations, e.g. change table, schema, and/or column names
 
 
 **What is Amahon Kinesis Data Streams?**
