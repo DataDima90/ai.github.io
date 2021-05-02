@@ -8,10 +8,7 @@ mathjax: true
 summary: Data Storage
 ---
 
-# Data Storage on AWS
-
-
-## Determine the Operational Characteristics of Storage Solution on AWS
+# Data Storage
 
 **Operational storage characteristics**
 - Data stored as rows
@@ -31,7 +28,7 @@ summary: Data Storage
 - Less frequent change
 
 
-### Operational Storage Services
+### Operational Characteristics of Storage Services on AWS
 
 **RDS - distributed relational database service**
 - Use cases
@@ -53,6 +50,7 @@ summary: Data Storage
   - Single-digit milisecond latency at scale
 - Scale
   - Horizontal scaling
+  - Can store data without bounds
 
 
 
