@@ -148,6 +148,136 @@ We should consider our data's freshness when selecting our storage system compon
   - When a table in a region has issues, application directs to a different region
 
 
+## Redshift Overview
+- Entreprise-class data warehouse and relational database query and management system
+- Connect using many types of client applications
+  - BI
+  - Reporting
+  - Analytics
+- Build multi-stage query operations that retrieve, compare, and evaluate large amounts of data
+- Efficient storage and optiimum query performance
+  - Massively parallel processing
+  - Columnar data storage
+  - Very efficient, targeted data compression encoding schemes
+
+### Redshift Architecture
+- Based on PostgreSQL
+- Clients connect via JDBC and ODBC
+- Built upon clusters
+  - One or more compute nodes
+  - If greater than 1 compute nodes, a leader node coordinates the compute nodes and communicates with external client apps
+- Leader node
+  - Build execution plans to execute database operations, such as complex queries
+  - Compiles code and distributes it to the compute nodes, also assigns a portion of the data to each compute node
+- Compute nodes
+  - Executes the compiled code and sends intermediate results back to the leader node for final aggregation
+  - Has dedicated CPU, memory, and attached disk storage, which are determined by the node type - node types: RA3, DC2, DS2
+  - User data is stored on compute nodes
+- Node slices
+  - Compute node are partitioned into slices
+  - Slices are allocated a portiion of the node's memory and disk space
+  - Processes a part of the workload assigned to the node
+  - Leader node distributes data to the slices, divides query workload to the slices
+  - Slices work in parallel to complete our queries
+  - Assign a column as a distribution key when we create our table on Redshift
+  - When we load data into our table, rows are distributed to the node slices by the table distribution key - facilitates parallel processing
+
+### Columnar storage
+- Drastically reduces the overall disk I/O requirements and reduces the amount of data we need to load from disk
+  - In relational dabases, data blocks store values sequentially for each consecutive column making up the entire row
+  - In columnar databases, each data block stores values of a single column for multiple rows
+
+### Moving data to and from Redshift
+- Redshift integrates well with AWS servies to move, transform, and load our data quickly and reliably
+  - S3
+  - DynamoDB
+  - EMR via SSH and COPY Command from Redshift
+  - EC2 via SSH and COPY Command from Redshift
+  - Data Pipeline
+  - DMS
+
+### Data Access and Retrieval Patterns
+- Characteristics of our data
+  - What type of date are we storing? 
+    - Structured data
+      - Examples: accounting data, demograhpic info, logs, mobile device, geolocation data
+      - Storage options: RDS, Redshift, S3 Data Lake
+    - Unstructured data
+      - Examples: email text, photos, video, audio, PDFs
+      - Storage options: S3 Data Lake, DynamoDB
+    - Semi-structured data
+      - Examples: email metadata, digital photo metadata, video metadata, JSON data
+      - Storage options: S3 Data Lake, DynamoDB
+- Data storage life cycle
+  - How long do we need to retain our data?
+    - S3
+    - S3 Glacier
+- Data access retrieval and latency requirements
+  - How fast does our retrieval need to be?
+    - Elasticache
+    - DynamoDB Acceleration (DAX)
+
+### Data Lake vs Data Warehouse
+- Data Warehouse
+  - Optimized for relational data produced by transactional systems
+  - Data structure/schema defined which optimizes fast SQL queries
+  - Used for operational reporting and analysis
+  - Schema on write, i.e. data is transformed before loading
+- Data Lake
+  - Relational and non-relational data
+  - Data structure/schema not defined when stored in the data lake
+  - Big data analytics, text analysis, ML
+  - Schema on read
+
+### Object vs Block store
+- Object storage
+  - S3 is used for object storage: highly scalable and available
+  - Store structured, unstructured, and semi-structured data
+  - Web sites, mobile apps, archive, analytics applications
+  - Storage via a web service
+- File storage
+  - Elastic File System (EFS) is used for file storage: shared file systems
+  - Content repositories, development environments, media stores, user home directories
+- Block storage
+  - Elastic Block Storage (EBS) attached to EC2 instances, EFS: volume type choices
+  - Redshift, Operating Systems, DBMS installs, file systems
+  - HDD: throughput intensive, large I/O, sequential I/O, big data
+  - SSD: high I/O per second, transaction, random access, boot volumes
+  - What is the difference between HDD and SSD?
+
+### Data Storage Lifecycle
+- Persistent data
+  - OLTP and OLAP
+  - DynamoDB, RDS, Redshift
+- Transient data
+  - Cached data, streaming data consumed in near-time time
+  - Elasticache (Redis, Memcached), DynamoDB Accelerator (DAX)
+  - Website session infor, streaming gaming data
+- Archive data
+  - Retained for years, typically regulatory
+  - S3 Glacier
+
+### Data Access Retrieval and Latency
+- Retrieval speed
+  - Near-real time
+    - Streaming data with near-real time dashboad display
+  - Cached data
+    - Elasticache (Memcached, Redis) **What is the difference?**
+    - DAX
+      - Right through cache
+
+## Data Management
+
+### Different Approaches to Data Management
+- Data Lake
+  - Store any data centrally at massive scale
+  - Store raw data
+- Data Warehouse
+  - Centralized data repository for BI and analysis
+  - Access the centralized data using BI tools, SQL clients, and other analytics apps
+
+
+
 ## Sources
 
 ### DynamoDB
