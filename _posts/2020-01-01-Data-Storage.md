@@ -148,4 +148,6 @@ We should consider our data's freshness when selecting our storage system compon
   - When a table in a region has issues, application directs to a different region
 
 
+## Sources
 
+- [https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb](https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb)
