@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Data Collection Systems on AWS
+title: Data Ingestion on AWS
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [AWS, Kinesis]
