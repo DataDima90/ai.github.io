@@ -56,7 +56,7 @@ summary: Data Storage
   - Data replicated across three AZs
   - Global tables for multi-region replication
 
-### 3. Elasticache - fully managed Redis and Memcached
+#### 3. Elasticache - fully managed Redis and Memcached
 - Use cases
   - Caching, session stores, gaming real-time analytics
 - Sub-milisecond response time from in-memory data store
