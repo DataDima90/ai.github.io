@@ -30,7 +30,7 @@ summary: Data Storage
 
 ### Operational Storage Services on AWS
 
-**RDS - distributed relational database service**
+#### 1. RDS - distributed relational database service
 - Use cases
   - E-commerce, web, mobile
 - Fast OLTP database options
@@ -43,7 +43,7 @@ summary: Data Storage
   - Automated backups and snapshots
   - Automated failover
 
-**DynamoDB - fully managed NoSQL database**
+#### 2. DynamoDB - fully managed NoSQL database
 - Use cases
   - Ad Tech, gaming, retail, banking and finance
 - Fast NoSQL database options
@@ -56,7 +56,7 @@ summary: Data Storage
   - Data replicated across three AZs
   - Global tables for multi-region replication
 
-**Elasticache - fully managed Redis and Memcached**
+### 3. Elasticache - fully managed Redis and Memcached
 - Use cases
   - Caching, session stores, gaming real-time analytics
 - Sub-milisecond response time from in-memory data store
@@ -64,7 +64,7 @@ summary: Data Storage
 - Reliability and durability
   - Redis Elasticache offers multi-AZ with automatic failover
 
-**Timestream - fully managed time series database**
+#### 4. Timestream - fully managed time series database
 - Use cases
   - IoT applications, Industrial telemetry, application monitoring
 - Fast: analyze trillions of events per day
