@@ -53,6 +53,20 @@ Apache Hadoop is an open-source software platform for distributed storage and di
 
 # Hadoop Ecosystem
 
+![]({{ site.url }}/assets/img/posts/hadoop_ecosystem.png)
+
+**Hive**
+It is a data warehouse tool
+
+**Sqoop**
+Data Ingestion for structured data
+
+**Flume**
+Data Ingestion for unstructured and semi-structured data
+
+**Spark**
+In-Memory
+
 
 # Architecture of Hadoop
 
