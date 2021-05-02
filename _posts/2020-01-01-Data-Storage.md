@@ -111,7 +111,7 @@ We should consider our data's freshness when selecting our storage system compon
 - DynamoDB tables
   - Attributes are the columns
   - Items are the rows
-  - A collection of items
+  - Tables are a collection of items
   - Must have a primary key, two types:
     - Partition key: primary key with one attribute called the hash attribute
       - DynamoDB has function determines the partition where an item is located
@@ -155,3 +155,4 @@ We should consider our data's freshness when selecting our storage system compon
 - [https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python](https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python)
 - [https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696](https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696)
 - [https://codeburst.io/dynamodb-data-modeling-7f11950b25bf](https://codeburst.io/dynamodb-data-modeling-7f11950b25bf)
+- [https://blog.thepolyglotprogrammer.com/10-things-you-should-know-about-dynamodb-e5b9593e6340](https://blog.thepolyglotprogrammer.com/10-things-you-should-know-about-dynamodb-e5b9593e6340)
