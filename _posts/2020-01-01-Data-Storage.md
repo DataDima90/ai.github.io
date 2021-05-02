@@ -98,6 +98,7 @@ summary: Data Storage
 
 
 **Data Freshness**
+
 We should consider our data's freshness when selecting our storage system components
 - Place hot data in cache (Elasticache or DAX) or NoSQL (DynamoDB)
 - Place warm data in SQL data stores (RDS)
@@ -111,16 +112,40 @@ We should consider our data's freshness when selecting our storage system compon
   - Attributes are the columns
   - Items are the rows
   - A collection of items
-  - Must have a primary key, two types
-    - Partiion key: primary key with one attribute called the hash attribute
+  - Must have a primary key, two types:
+    - Partition key: primary key with one attribute called the hash attribute
       - DynamoDB has function determines the partition where an item is located
     - Composite primary key: partition key plus sort key (range attribute) where all items with the same sort key are located together ordered by sort key value
   - No limit to number of items (rows) in a table
   - Maximum item size is 400KB
 - DynamoDB has two models of consistency: eventual and strong consistency
-- ACID
+  - Eventually consistent reads are the default
+    - Achieves maximum read throughput (Performance +)
+    - May return stale data (Accuracy -)
+  - Strongly consistent reads
+    - Returns result representing all prior write operations
+    - Always accurate data returned (no stale data) (Accuracy +)
+    - Increased latency with this option (Performance -)
+- Atomicity, consistency, islolation, and durability (ACID)
+  - Support for ACID transactions using transactional read and write APIs
+  - ACI across one or more tables in one account and region
+  - Use for transactions that require coordinated inserts, updates, or deletes to multiple items as part of one logical operation
 - Cost versus performance - two capacity modes
+  - On-demand capacity
+    - DynamoDB automatically provisions capacity based on your workload, up or down
+  - Provisioned capacity
+    - Specify read capacity units (RCUs) and write capacity units (WCUs) per second for your application
+    - One RCU equals one strongly consistent read or two eventually consistent reads per second for items to up to 4 KB
+    - One WC equals one write per second for items to up to 1 KB
+    - Can use auto scaling to automatically calibrate our table's capacity
+      - Helps manage cost
 - DynamoDB Global tables
+  - Specifiy multple in which our table is available
+  - DynamoDB propagates all changes across all regions
+  - Any change to an item in any replica is propagated to all other replicas
+  - New items propagated within seconds
+  - Uses last-writer-wins reconciliation with concurrent updates
+  - When a table in a region has issues, application directs to a different region
 
 
 
