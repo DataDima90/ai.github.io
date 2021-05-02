@@ -150,4 +150,6 @@ We should consider our data's freshness when selecting our storage system compon
 
 ## Sources
 
+### DynamoDB
 - [https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb](https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb)
+- [https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python](https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python)
