@@ -30,14 +30,26 @@ Data reliable and trust. Verifying and validating the data
 Having access to big data is all well and good but that's only useful if we can turn it into a value
 
 ## Challenges in Big Data
+
 - Dealing with data growth
 - Analyzing in timely manner
 - Integrating desperate data sources
 - Validating Data
-- 
+- Securing Data
 
 # What is Hadoop
+Apache Hadoop is an open-source software platform for distributed storage and distributed processing of very large data sets. Clusters built from commodity hardware.
 
+**When to use Hadoop?**
+- Data Size and Data Diversity
+- Multiple Frameworks for Big Data
+- Lifetime Data Availability
+- Batch
+
+**When NOT to use Hadoop?**
+- Real Time Analytics
+- Not a Replacement for Existing Infrastructure
+- Multiple Smaller Datasets
 
 # Hadoop Ecosystem
 
