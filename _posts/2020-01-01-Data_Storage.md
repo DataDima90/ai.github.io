@@ -1,5 +1,4 @@
-  
----
+  ---
 layout: post
 title: Data Storage on AWS
 featured-img: shane-rounce-205187
