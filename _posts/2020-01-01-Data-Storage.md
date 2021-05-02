@@ -153,3 +153,5 @@ We should consider our data's freshness when selecting our storage system compon
 ### DynamoDB
 - [https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb](https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb)
 - [https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python](https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python)
+- [https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696](https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696)
+- [https://codeburst.io/dynamodb-data-modeling-7f11950b25bf](https://codeburst.io/dynamodb-data-modeling-7f11950b25bf)
