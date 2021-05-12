@@ -5,7 +5,7 @@ featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [Data Processing, AWS]
 mathjax: true
-summary: How to create and operate a data lake in a secure and scalable way
+summary: Data Processing on AWS
 ---
 
 
@@ -79,7 +79,127 @@ Profile your Glue jobs using metrics and visualize on the Glue and CloudWatch co
   - Hue: Web interface for analyzing data with Hadoop
   - Presto: High performance distributed SQL query engine for big data
 
-# Integrates with the following data stores
+## EMR Components
+
+EMR is built upon clusters (or collections) of EC2 instances
+- The EC2 instances are called nodes, all of which have roles (or node type) in the cluster
+- EMR installs different software components on each node type, defining the node's role in the distributed architecture of EMR
+- Three types of nodes in an EMR cluster
+  - Master node: manages the cluster, running software components to coordinate the distribution of data and tasks across other nodes for processing
+  - Core node: has software components that run tasks and store data in the HDFS on your cluster
+  - Task node: node with software components that ONLY runs tasks and does NOT store data in HDFS
+
+## EMR Cluster - Work
+Options for submitting work to your EMR cluster
+- Script the work to be done as functions that you specify in the steps you define when you create a cluster
+  - This approach is used for clusters that process data and then terminate
+- Build a long-running cluster and submit steps (containing one or more jobs( to it via the console, the EMR API, or the AWS CLI
+  - This approach is used for clusters that process data continuously or need to remain available
+- Create a cluster and connect to the master node and/or other nodes as required using SSH
+  - This approch is used to perform tasks and submit queries, either scripted or interactively, via the interfaces of the installed applications
+
+## EMR Cluster - Processing Data
+At launch time, you choose the framework and applications to install to achieve your data prcoessing needs.
+You submit jobs or queries to installed applications or run steps to process data in your EMR cluster
+- Submitting jobs/steps to installed applications
+  - Each step is a unit of work that has instructions to process data by software installed on the cluster
+  - Example: Submit a request to run a set of steps
+
+## EMR Cluster - Lifecycle
+
+1. Provisions EC2 instances of the cluster
+2. Runs bootstrap actions
+3. Installs applications such as Hive, Hadoop, Sqoop, Spark
+4. Connect to the cluster instances; cluster sequentially runs any steps that specified at creation; submit additional steps
+5. After steps complete the cluster waits or shuts down, depending on config
+6. When all instances are terminated, the cluster moves to COMPLETED state
+
+## EMR Architecture - Storage
+Architected in layers.
+Storage: file systems used by the cluster
+- HDFS: distributes the data it stores across instances in the cluster (ephemeral)
+- EMR File System (EMRFS): directly access data stored in S3 as if it were a file system like HDFS
+- Local file system: EC2 locally connected disk
+
+## EMR Architecture - Cluster Management
+YARN (Yet Another Resource Manager)
+- Centrally manage cluster resources
+- Agent on each node that keeps the cluster healthy, and communicates with EMR
+- EMR defaults to scheduling YARN jobs so that jobs will not fail when task nodes running on spot instances are terminated
+
+## EMR Architecture - Data Processing Frameworks
+Framework layer that is used to process and anaylze data
+Different frameworks are available:
+- Hadoop MapReduce:
+  - Parallel distributed applications that use Map and Reduce functions (e.g. Hive)
+    - Map function maps data to sets of key-value pairs
+    - Reduce function combines the key-value pairs and processes the data
+  - Spark
+    - Cluster framework and programming model for processing big data workloads
+
+## EMR Architecture - Application Programs
+- Supports many application programs
+- Create processing workloads
+- Use machine learning algorithms
+- Create stream processing apps
+- Build data warehouses and data lakes
+
+## EMR Applications and Categories
+EMR supports many hadoop applications
+- Spark
+- Hive
+- Presto
+- HBase
+
+Data scientists and engineers use EMR to run analytics workflows using these tools along with Hue and EMR Notebooks
+
+Several important categories of EMR applications
+- Data Processing 
+- SQL
+- NoSQL
+- Interactive Analytics
+
+### Data Processing Applications
+
+Apache Spark
+- Hadoop ecosystem engine used process large data sets very quickly
+- Runs fault-tolerant resilient distributed datasets (RDDs) in-memory, and defines data transformations
+- Includes Spark SQL, Spark Streaming, MLlib, and GraphX
+
+Apache Flink
+- Streaming dataflow engine that allows you to run real-time stream processing on high-throughput data sources
+- Supports APIs optimized for writing both streaming and batch applications
+
+### SQL Applications
+
+Apache Hive
+- Data warehouse and analytics package that runs on top of Hadoop
+- Allows you to structure, summarize, and query data
+- Supports map/reduce functions and complex extensible user-defined data types like JSON and Thrift
+- Can process complex and unstructured data sources such as text documents and log files
+
+Presto
+- SQL query engine optimized for low-latency, ad-hoc analysis of data
+- Can process data from multiple data sources including the HDFS and Amazon S3
+
+### NoSQL Applications
+Apache HBase
+- Non-relational, distributed database modeled after Google's BigTable
+- Runs on top of HDFS to provide BigTable-like capabilities for Hadoop
+- Store large amounts of sparse data using column-based compression and storage
+- Use S3 as a data store for HBase, enabling you to lower costs and reduce operational complexity
+
+### Interactive Analytics Applications
+Hue
+- User Interface for Hadoop that allows you to create and run Hive queries, manage files in HDFS, create and run Pig scripts, and manage tables
+- Also integrates with S3, so you can query directly against S3 and easily transfer files between HDFS and Amazon S3
+
+EMR Notebooks
+- Notebooks pre-configured for Spark that are based on Jupyter notebooks
+- Interactively run Spark jobs on EMR clusters written in PySpark, Spark SQL, Spark R or Scala
+
+
+## Integrates with the following data stores
 - Use S3 as an object store for Hadoop
 - HDFS on the Core nodes instance storage
 - Directly access and process data in DynamoDB
