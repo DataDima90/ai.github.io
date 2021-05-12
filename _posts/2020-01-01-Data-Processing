@@ -1,1 +1,95 @@
+---
+layout: post
+title: Data Processing on AWS
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Data Processing, AWS]
+mathjax: true
+summary: How to create and operate a data lake in a secure and scalable way
+---
 
+
+# Glue ETL on Apache Spark
+
+- Use Glue when you do not need or want to pay for an EMR cluster
+- Glue generates an Apache Spark (PySpark or Scala) script
+- Glue runs in a fully managed Apache Spark environment
+
+- Spark has 4 primary libraries:
+  - Spark SQL
+  - Spark Streaming
+  - MLlib
+  - GraphX
+
+## Glue ETL Jobs - Structure
+A Glue job defines the business logic that performs the ETL work in AWS Glue
+- Glue runs your script to extract data from your sources, transform the data, and load it into your targets
+- Glue triggers can start jobs based on a schedule or event, or on demand.
+- Monitor your job runs to get runtime metrics: completion status, duration, etc.
+- Based on your source schema and target location or schema, the Glue code generator automatically creates an Apache Spark API (PySpark) script.
+  - Edit the script to customize to your requirements.
+
+## Glue ETL Jobs - Types
+Glue output file formats JSON, CSV, ORC (Optimized Row Columnar), Apache Parquet, and Apache Avro
+Three types of Glue jobs:
+- Spark ETL job: executed in managed Apache Spark environment, processes data in batches
+- Streaming ETL job: uses the Apache Spark Structured Streaming framework
+- Python shell job: schedule and run tasks that do not require an Apache Spark environment
+
+## Glue ETL Jobs - Transforms
+Glue has built-in transforms for processing data
+- Call from within your ETL script
+- In a DynamicFrame (an extension of an Apache Spark SQL DataFrame), your data passes from transfrom to transform
+- Built-in transform types (subset)
+  - ApplyMapping: maps source DynamicFrame columns and data types to target DynamicFrame columns and data types
+  - Filter: selects records from a DynamicFrame and returns a filtered DynamicFrame
+  - Map: applies a function to the records of a DynamicFrame and returns a transformed DynamicFrame
+  - Relationalize: converts a DynamicFrame to a relational (rows and columns) form
+
+## Glue ETL jobs - Triggers
+A trigger can start specificed jobs and crawlers
+- On demand, based on a schedule, or based on combination of events
+- Add a trigger via the Glue console, the CLI or the Glue API
+- Activate or deactivate a trigger via the Glue console, the CLI, or the Glue API
+
+## Glue ETL jobs - Monitoring
+Glue produces metrics for crawlers and jobs for monitoring
+- Statistics about the health of your environment
+- Statistics are written to the Glue Data Catalog
+
+Use automated monitoring tools to watch Glue and report problems
+- CloudWatch events
+- CloudWatch logs
+- CloudTrail logs
+
+Profile your Glue jobs using metrics and visualize on the Glue and CloudWatch consoles to identify and fix issues
+
+
+# EMR Cluster ETL Processing
+
+- More flexible and powerful than Spark
+- Can use Spark on EMR, but also have other options:
+  - Flink: Framework and distributed processing engine for stateful computations over unbounded and bounded data streams
+  - Hadoop: Framework that allows for the distributed processing of large data sets across clusters of computers
+  - Spark: Distributed general-purpose cluster-computing framework
+  - Sqoop: Command-line interface application for transferring data between relational databases and Hadoop
+  - TensorFlow: Machine Learning library
+  - Zepplin: Web-based notebook for data-driven analytics
+  - Hive: A SQL-like interface to query data stored in various databases and file systems that integrates with Hadoop. Alternative to Glue Data Catalog
+  - Hue: Web interface for analyzing data with Hadoop
+  - Presto: High performance distributed SQL query engine for big data
+
+# Integrates with the following data stores
+- Use S3 as an object store for Hadoop
+- HDFS on the Core nodes instance storage
+- Directly access and process data in DynamoDB
+- Process data in RDS
+- Use COPY command to load data in parallel into Redshift from EMR
+- Integrates with S3 Glacier for low-cost storage
+
+
+# Kinesis ETL (Streaming) Processing
+- Use Kinesis Analytics to gain real-time insights into your streaming data
+  - Query data in your stream or build streaming applications using SQL or Flink
+  - Use for filtering, aggregation, and anomaly detection
+  - Preprocess your data with lambda
