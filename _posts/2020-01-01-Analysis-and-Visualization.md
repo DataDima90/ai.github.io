@@ -147,6 +147,25 @@ Uses Hadoop to distribute data and processing across a resizeable cluster of EC2
 
 ![]({{ site.url }}/assets/img/posts/emr.png)
 
+- Fault tolerant for core node failures and continues job execution if a slave node goes down
+
+**Durability and availability**
+- Starts p a new node if core node fails
+- Will not replace nodes if all nodes in the cluster fail
+- Monitor for node failures through CloudWatch
+
+**Scalability and elasticity**
+- Resize your running cluster: add core nodes, add/remove task nodes
+
+**Interfaces**
+- Tools on top of Hadoop: Hive, Pig, Spark, HBase, Presto
+- Kinesis Connector: directly read and query data from Kinesis Data Streams
+
+**Anti-patterns**
+- Small data sets; Made for big data sets
+- ACID transactions; RDS is a better choice
+
+
 ### Kinesis
 
 Load and analyze streaming data; Ingest real-time data into data lakes and data warehouses
@@ -168,6 +187,26 @@ Load and analyze streaming data; Ingest real-time data into data lakes and data 
 **Performance**
 - Data Streams: throughput capacity by number of shards
 - Provision as many shards as needed
+
+- Synchronously replicates data across three AZs
+
+**Durability and availability**
+- Highly available and durable due to config of multiple AZs in one region
+- Use cursor in DynamoDB to restart failed apps
+- Resume at exact position in the stream where failure occured
+
+**Scalability and elasticity**
+- Use API calls to automate scaling, increase or decrease stream capacity at any time
+
+**Interfaces**
+- Two interfaces:
+  - Input (KPL, agend, PUT API)
+  - Output (KCL)
+  - Kinesis Storm Spout: read from an Kinesis stream into Apache Storm
+
+**Anti-patterns**
+- Small scale consistent throughput
+- Long-term data storage and analytics; Redshift, S3, or DynamoDB are better choices
 
 ### DynamoDB
 
