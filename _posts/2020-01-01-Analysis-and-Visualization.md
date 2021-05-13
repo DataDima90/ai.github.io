@@ -76,7 +76,13 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 - Platform services
   - SageMaker
 
+## Use Case - Data Warehousing
 
+![]({{ site.url }}/assets/img/posts/datawarehousingusecase.png)
+
+## Use Case - Big Data Processing
+
+![]({{ site.url }}/assets/img/posts/bigdatausecase.png)
 
 <a name="ana"></a>
 # 2. Select The Appropriate Data Analysis Solution For A Given Scenario
