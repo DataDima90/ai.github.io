@@ -44,7 +44,7 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 
 ### Glue
 
-Fully managed ETL service used to catalog, clean, enrich, and move data between data stores
+- Fully managed ETL service used to catalog, clean, enrich, and move data between data stores
 
 **Usage patterns**
 - Crawl your data and generate code to execute, including data transformation and loading
@@ -60,6 +60,25 @@ Fully managed ETL service used to catalog, clean, enrich, and move data between 
 **Performance**
 - Scale-out Apache Spark environment to load data to target data store
 - Specify the number of Data Processing Units (DPUs) to allocate to your ETL job
+
+- Connect to many data sources, S3, RDS, or many other types of data sources
+
+**Durability and availability**
+- Glue leverages the durability of the data stores to which you connect
+- Provides job status and pushes notifications to CloudWatch events
+- Use SNS notifications from CloudWatch events to notify of job failures or success
+
+**Scalability and elasticity**
+- Runs on top of the Apache Spark for transformation job scale-out execution
+
+**Interfaces**
+- Crawlers scan many data store types
+- Bulk import Hive metastore into Glue Data Catalog
+
+**Anti-patterns**
+- Streaming data, unless Spark Streaming
+- Heterogeneous ETL job types; use EMR
+- NoSQL databases: not supported as data source
 
 
 ### Lambda
@@ -84,6 +103,27 @@ Lambda is serverless, e.g. run code without provising or managing servers.
 - Process events within milliseconds
 - Latency higher for cold-start
 - Retain a function instance and reuse it to serve subsequent requests, versus creating new copy
+
+- Uses replication and redundancy for high availability of the service and the functions it operates
+
+**Durability and availability**
+- No maintenance windows or scheduled downtime
+- On failure, Lambda synchronoously responds with an exception
+- Asynchronous functions are retried at least 3 times
+
+![]({{ site.url }}/assets/img/posts/lambda.png)
+
+**Scalability and elasticity**
+- Scales automatically with no limits with dynamic capacity allocation
+
+**Interfaces**
+- Trigger Lambda from AWS servies events
+- Respond to CloudTrail audit log entries as events
+
+**Anti-patterns**
+- Long running applications: 900 sec runtime
+- Dynamic websites
+- Stateful applications: must be stateless
 
 ### EMR
 
@@ -226,6 +266,9 @@ BI service to build visualizations, perform ad-hoc analysis, and get business in
 **Performance**
 - SPICE uses a combination of columnar storage and in-memory technologies
 - Machine code generation to run interactive queries on large datasets at low latency
+
+
+
 
 ## Appropriate Analytics Service
 
