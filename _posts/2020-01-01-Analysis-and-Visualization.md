@@ -191,6 +191,41 @@ Interactive query service used to analyze data in S3 using Presto and standard S
 - Compressing, partitioning, and converting your data into columnar formats
 - Convert data to columnar formats, allowing Athena to read only the columns it needs to process queries
 
+### Elasticsearch Service
+
+Fully managed service that delivers Elasticsearch's APIs and built-in integration with Kibana
+
+**Usage pattern**
+- Analyze activity logs
+- Analyze social media sentiments
+- Usage monitoring for mobile applications
+- Analyze data stream updates from other AWS services
+
+**Cost**
+- Elasticsearch instance hours
+- EBS (Elastic Block Storage) storage (if you choose this option), and standard data transfer fees
+
+**Performance**
+- Instance type, workload, index, number of shards used, read replicas, storage configurations
+- Fast SSD instance storage for storing indexes or multiple EBS volumes
+
+### QuickSight
+
+BI service to build visualizations, perform ad-hoc analysis, and get business insights from data
+
+**Usage pattern**
+- Ad-hoc exploration/visualization
+- Dashboard and KPIs
+- Analyze and visualize data coming from logs and stored in S3
+- Analyze and visualize data in SaaS applications like Salesforce
+
+**Cost**
+- Standard $9/user/month; Enterprise $18/user/month
+- SPICE capacity: $.25/GB/month Standard; $.38/GB/month Enterprise
+
+**Performance**
+- SPICE uses a combination of columnar storage and in-memory technologies
+- Machine code generation to run interactive queries on large datasets at low latency
 
 ## Appropriate Analytics Service
 
