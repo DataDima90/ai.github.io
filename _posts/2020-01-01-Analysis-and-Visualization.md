@@ -96,16 +96,34 @@ Uses Hadoop to distribute data and processing across a resizeable cluster of EC2
 - Ad targeting, click stream analytics
 - Predictive analytics
 
-Cost
+**Cost**
 - Pay for the hours the cluster is up
 - EC2 pricing options (On-Demand, Reserved, and Spot)
 - EMR price is in addition to EC2 price
 
-Performance
+**Performance**
 - Driven by type/number of EC2 instances
 - Ephemeral or long-running
 
 ![]({{ site.url }}/assets/img/posts/emr.png)
+
+### Kinesis
+
+Load and analyze streaming data; Ingest real-time data into data lakes and data warehouses
+
+**Usage patterns**
+- Move data from producers and continuously process it to transform before moving to another data store; drive real-time metrics and analytics
+- Real-time data analytics
+- Log intake and processing
+- Real-time metrics and reporting
+- Video/Audio processing
+
+![]({{ site.url }}/assets/img/posts/kinesis.png)
+
+**Cost**
+- Pay for the resources consumed
+- Data Streams hourly price per/shard
+- Charge for each 1 million PUT transactions
 
 ## Appropriate Analytics Service
 
