@@ -82,6 +82,7 @@ Lambda is serverless, e.g. run code without provising or managing servers.
 - Latency higher for cold-start
 - Retain a function instance and reuse it to serve subsequent requests, versus creating new copy
 
+
 ![]({{ site.url }}/assets/img/posts/lambdausagepattern.png)
 
 
