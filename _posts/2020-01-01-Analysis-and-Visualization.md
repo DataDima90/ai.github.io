@@ -91,7 +91,21 @@ Uses Hadoop to distribute data and processing across a resizeable cluster of EC2
 
 **Usage patterns**
 - Reduces large processing problems and data sets into smaller jobs and distributes them across many compute nodes in a Hadoop cluster
-- 
+- Log processing and analytics
+- Large ETL data movement
+- Ad targeting, click stream analytics
+- Predictive analytics
+
+Cost
+- Pay for the hours the cluster is up
+- EC2 pricing options (On-Demand, Reserved, and Spot)
+- EMR price is in addition to EC2 price
+
+Performance
+- Driven by type/number of EC2 instances
+- Ephemeral or long-running
+
+![]({{ site.url }}/assets/img/posts/emr.png)
 
 ## Appropriate Analytics Service
 
