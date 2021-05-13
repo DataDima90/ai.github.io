@@ -125,6 +125,37 @@ Load and analyze streaming data; Ingest real-time data into data lakes and data 
 - Data Streams hourly price per/shard
 - Charge for each 1 million PUT transactions
 
+**Performance**
+- Data Streams: throughput capacity by number of shards
+- Provision as many shards as needed
+
+### DynamoDB
+
+Fully managed NoSQL database that provides low-latency access at scale
+
+**Usage patterns**
+- Apps needing low-latency NoSQL database able to scale storage and throughput up or down without code changes or downtime
+- Mobile apps and gaming
+- Sensor networks
+- Digital and serving
+- E-commerce shopping carts
+
+![]({{ site.url }}/assets/img/posts/dynamodb.png)
+
+**Cost**
+- Three components:
+  - Provisioned throughput capacity (per hour)
+  - Indexed data storage (per GB per month)
+  - Data transfer in or out (per GB per month)
+
+**Performance**
+- SSDs and limiting indexing on attributes provides high throughput and low latency
+- Define provisioned throughput capacity required for your tables
+
+### Redshift
+
+
+
 ## Appropriate Analytics Service
 
 **Analytics**
