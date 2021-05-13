@@ -84,6 +84,14 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 
 ![]({{ site.url }}/assets/img/posts/bigdatausecase.png)
 
+## Use Case - Real Time Analytics with MSK and Kinesis
+
+![]({{ site.url }}/assets/img/posts/realtimeanalyticskinesismskusecase.png)
+
+## Use Case - Operational Analytics
+
+![]({{ site.url }}/assets/img/posts/operationalanalyticsusecase.png)
+
 <a name="ana"></a>
 # 2. Select The Appropriate Data Analysis Solution For A Given Scenario
 
