@@ -59,7 +59,7 @@ Fully managed ETL service used to catalog, clean, enrich, and move data between 
 - Scale-out Apache Spark environment to load data to target data store
 - Specify the number of Data Processing Units (DPUs) to allocate to your ETL job
 
-
+![]({{ site.url }}/assets/img/posts/glueusagepattern.png)
 
 
 ## Appropriate Analytics Service
