@@ -51,6 +51,8 @@ Fully managed ETL service used to catalog, clean, enrich, and move data between 
 - Integrate with services like Athena, EMR, and Redshift
 - Generates customizable, reusable, and portable ETL code using Python and Spark
 
+![]({{ site.url }}/assets/img/posts/glueusagepattern.png)
+
 **Cost**
 - Hourly rate, billed by the minute, for crawler and ETL jobs
 - Glue Data Catalog: pay a monthly fee for storing and accessing the metadata
@@ -59,7 +61,6 @@ Fully managed ETL service used to catalog, clean, enrich, and move data between 
 - Scale-out Apache Spark environment to load data to target data store
 - Specify the number of Data Processing Units (DPUs) to allocate to your ETL job
 
-![]({{ site.url }}/assets/img/posts/glueusagepattern.png)
 
 ### Lambda
 
@@ -72,6 +73,8 @@ Lambda is serverless, e.g. run code without provising or managing servers.
 - Replace Cron
 - ETL
 
+![]({{ site.url }}/assets/img/posts/lambdausagepattern.png)
+
 **Cost**
 - Charged by the number of requests to functions and code execution time
 - $0.20 per 1 million requests
@@ -82,9 +85,13 @@ Lambda is serverless, e.g. run code without provising or managing servers.
 - Latency higher for cold-start
 - Retain a function instance and reuse it to serve subsequent requests, versus creating new copy
 
+### EMR
 
-![]({{ site.url }}/assets/img/posts/lambdausagepattern.png)
+Uses Hadoop to distribute data and processing across a resizeable cluster of EC2 instances
 
+**Usage patterns**
+- Reduces large processing problems and data sets into smaller jobs and distributes them across many compute nodes in a Hadoop cluster
+- 
 
 ## Appropriate Analytics Service
 
