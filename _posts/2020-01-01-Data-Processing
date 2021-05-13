@@ -284,6 +284,50 @@ Uniform Instance Groups
   - Use YARN scheduling features such as FairScheduler or CapacityScheduler to run multiple steps in parallel
   - If you run out of resources because the cluster is running to many concurrent steps, manually cancel any running stepts to free up resources
 
+
+## Which Tool or Service for Batch or Streaming ETL?
+
+Batch processing model
+- Data is collected over a period of time, then run through analyitcs tools
+- Time consuming, designed for large quantities of information that are not time-sensitive
+
+Streaming processing model
+- Data is processed in a stream, a record at a time or in micro-batches of tens, hundreds, or thousands of records
+- Fast, designed for information that's needed immediately
+
+### Batch Processing ETL
+
+AWS services used for batch processing
+
+Glue Batch ETL
+- Schedule ETL jobs to run at a minimum of 5-minute intervals
+- Process micro-batches
+- Serverless
+
+EMR Batch ETL
+- Use Impala or Hive to process batches of data
+- Cluster of servers
+- Very flexible in tool/application selection
+
+### Streaming Processing ETL
+
+AWS services used for streaming processing
+
+Lambda
+- Reads records from your data stream, runs functions synchronously
+- Frequently used with Kinesis
+- Serverless
+
+Kinesis
+- Use KCL, Kinesis Analytics, Kinesis Firehose to process your data
+- Serverless
+
+EMR Streaming ETL
+- Use Spark Streaming to build your stream processing ETL application
+- Cluster of servers
+
+
+
 ## Integrates with the following data stores
 - Use S3 as an object store for Hadoop
 - HDFS on the Core nodes instance storage
