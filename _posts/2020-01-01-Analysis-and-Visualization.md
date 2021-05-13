@@ -26,6 +26,58 @@ This Page is divided into following parts:
 Here we will understand the analysis and visualization components of a data analyitcs solution and which AWS servies implement these concepts
 
 
+## Purpose Built Analytics Services
+Choose the correct approach and tool for your analytics problem. Know the AWS purpose bilt analytics services:
+- Athena
+- Elasticsearch
+- EMR
+- Kinesis Family (Data Streams, Firehose, Analytics, Video Streams)
+- Redshift (Spectrum)
+- MSK (Managed Streaming for Apache Kafka)
+- Also know where to use
+  - S3
+  - EC2
+  - Glue
+  - Lambda
+
+## Appropriate Analytics Service
+
+**Analytics**
+- Interactive analytics
+  - Service: Athena
+- Big data processing
+  - Service: EMR
+- Data warehousing
+  - Service: Redshift
+- Real-time analytics
+  - Service: Kinesis
+- Operational analyitcs
+  - Service: Elasticsearch
+- Dashboards and visualizations
+  - Service: QuickSight
+
+**Data movement**
+- Real-time data movement
+  - Service: MSK, Kinesis Family, Glue
+
+**Data Lake**
+- Object Storage
+  - Service: S3, Lake Formation
+- Backup and archive
+  - Service: S3 Glacier, AWS Backup
+- Data catalog
+  - Service: Glue, Lake Formation
+- Third-part data
+  - Service: AWS Data Exchange
+
+**Predictive analytics and machine learning**
+- Frameworks and interfaces
+  - Service: AWS Deep Learning AMIs
+- Platform services
+  - SageMaker
+
+
+
 <a name="ana"></a>
 # 2. Select The Appropriate Data Analysis Solution For A Given Scenario
 
