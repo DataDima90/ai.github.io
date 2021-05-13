@@ -31,14 +31,36 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 - Athena
 - Elasticsearch
 - EMR
+- DynamoDB
 - Kinesis Family (Data Streams, Firehose, Analytics, Video Streams)
 - Redshift (Spectrum)
 - MSK (Managed Streaming for Apache Kafka)
+- QuickSight
 - Also know where to use
   - S3
   - EC2
   - Glue
   - Lambda
+
+### Glue
+
+Fully managed ETL service used to catalog, clean, enrich, and move data between data stores
+
+**Usage patterns**
+- Crawl your data and generate code to execute, including data transformation and loading
+- Integrate with services like Athena, EMR, and Redshift
+- Generates customizable, reusable, and portable ETL code using Python and Spark
+
+**Cost**
+- Hourly rate, billed by the minute, for crawler and ETL jobs
+- Glue Data Catalog: pay a monthly fee for storing and accessing the metadata
+
+**Performance**
+- Scale-out Apache Spark environment to load data to target data store
+- Specify the number of Data Processing Units (DPUs) to allocate to your ETL job
+
+
+
 
 ## Appropriate Analytics Service
 
@@ -76,21 +98,23 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 - Platform services
   - SageMaker
 
-## Use Case - Data Warehousing
+### Use Case - Data Warehousing
 
 ![]({{ site.url }}/assets/img/posts/datawarehousingusecase.png)
 
-## Use Case - Big Data Processing
+### Use Case - Big Data Processing
 
 ![]({{ site.url }}/assets/img/posts/bigdatausecase.png)
 
-## Use Case - Real Time Analytics with MSK and Kinesis
+### Use Case - Real Time Analytics with MSK and Kinesis
 
 ![]({{ site.url }}/assets/img/posts/realtimeanalyticskinesismskusecase.png)
 
-## Use Case - Operational Analytics
+### Use Case - Operational Analytics
 
 ![]({{ site.url }}/assets/img/posts/operationalanalyticsusecase.png)
+
+
 
 <a name="ana"></a>
 # 2. Select The Appropriate Data Analysis Solution For A Given Scenario
