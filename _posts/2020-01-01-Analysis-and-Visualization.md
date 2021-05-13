@@ -231,6 +231,28 @@ Fully managed NoSQL database that provides low-latency access at scale
 - SSDs and limiting indexing on attributes provides high throughput and low latency
 - Define provisioned throughput capacity required for your tables
 
+- Fault tolerance: automatically synchronously replicates data across 3 data centers in a region
+
+**Durability and avaiability**
+- Protection against individual machine or facility failures
+- DynamoDB Streams allows replication across regions
+- DynamoDB Streams enables tables data activity replicated across geographic regions
+
+**Scalability and elasticity**
+- No limit to data storage, automatic storage allocation, automatic ddata partition
+
+**Interfaces**
+- REST API allows management and data interface
+- DynamoDB select operation creates SQL-like queries
+
+**Anti-patterns**
+- Port application from relational database
+- Joins or complex transactions
+- Large data with low I/O rate
+- Blob (Binary Large Object) data > 400KB, S3 better choice
+
+![]({{ site.url }}/assets/img/posts/dynamodbdax.png)
+
 ### Redshift
 
 Fully-managed, petabyte-scale data warehouse service for analyzing data using BI tools
@@ -249,6 +271,25 @@ Fully-managed, petabyte-scale data warehouse service for analyzing data using BI
 **Performance**
 - Columnar storage, data compression, and zone maps to reduce query I/O
 - Paralllizes and distributes SQL operations to take advantage of all available resources
+
+- Automatically detects and replaces a failed node in your data warehouse cluster
+
+**Durability and availability**
+- Failed node cluster is read-only until replacement node is provisioned and added to the DB
+- Cluster remains available on drive failure; Redshift mirrors your data across the cluster
+
+**Scalability and elasticity**
+- With API change the number, or type, of nodes while cluster remains live
+
+**Interfaces**
+- JDBC and ODBC drivers for use with SQL clients
+- S3, DynamoDB, Kinesis, BI tools such as QuickSight
+
+**Anti-patterns**
+- Small data sets, better big data sets
+- OLTP, better OLAP
+- Unstructured data
+- Blob data, S3 better choice
 
 ### Athena
 
@@ -270,6 +311,25 @@ Interactive query service used to analyze data in S3 using Presto and standard S
 - Compressing, partitioning, and converting your data into columnar formats
 - Convert data to columnar formats, allowing Athena to read only the columns it needs to process queries
 
+- Executes queries using compute resources across multiple facilites
+
+**Durability and availablity**
+- Automatically routes queries if a particular facility is unreachable
+- S3 is the underlying data store, gaining S3's 11 9s durability
+
+**Scalability and elasticity**
+- Serverless, scales automatically as needed
+
+**Interfaces**
+- Athena CLI, API, via SDK, and JDBC
+- QuickSight visualizations
+
+**Anti-patterns**
+- Enterprise Reporting and Business Intelligence Workloads; Redshift better choice
+- ETL Workloads; EMR and Glue better choice
+- Not a replacement for RDBMS
+
+
 ### Elasticsearch Service
 
 Fully managed service that delivers Elasticsearch's APIs and built-in integration with Kibana
@@ -287,6 +347,24 @@ Fully managed service that delivers Elasticsearch's APIs and built-in integratio
 **Performance**
 - Instance type, workload, index, number of shards used, read replicas, storage configurations
 - Fast SSD instance storage for storing indexes or multiple EBS volumes
+
+- Zone Awareness: distributes domain instances across two different AZs
+
+**Durability and availability**
+- Zone Awareness gives you cross-zone replication
+- Automated and manual snapshots for durability
+
+**Scalability and elasticity**
+- Use API and CloudWatch metrics to automatically scale up/down
+
+**Interfaces**
+- S3, Kinesis, DynamoDB Streams, Kibana
+- Lambda Function as an event handler
+
+**Anti-patterns**
+- OLTP, RDS better choice
+- Ad-hoc data querying, Athena better choice
+
 
 ### QuickSight
 
@@ -306,7 +384,22 @@ BI service to build visualizations, perform ad-hoc analysis, and get business in
 - SPICE uses a combination of columnar storage and in-memory technologies
 - Machine code generation to run interactive queries on large datasets at low latency
 
+- SPICE automatically replicates data for high availability
 
+**Durability and availability**
+- Scale to hundreds of thousands of users
+- Simulataneous analytics across AWS data sources
+
+**Scalability and elasticity**
+- Fully managed service, scale to terabytes of data
+
+**Interfaces
+- RDS, Aurora, Redshift, Athena, S3
+- SaaS, applications such as Salesforce
+
+**Anti-patterns**
+- Highly formatted canned Reports, better for ad hoc query, analysis and visualization of data
+- ETL, Glue better choice
 
 
 ## Appropriate Analytics Service
