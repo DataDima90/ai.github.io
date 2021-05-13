@@ -198,6 +198,91 @@ EMR Notebooks
 - Notebooks pre-configured for Spark that are based on Jupyter notebooks
 - Interactively run Spark jobs on EMR clusters written in PySpark, Spark SQL, Spark R or Scala
 
+## Optimizing EMR
+Based on your workload you have several options for optimizing your EMR cluster.
+Design options:
+- Instance type
+- Instance configuration
+- HDFS capacity
+- Dynamic sizing
+- Instance fleets or uniform instance groups
+- Run multiple steps in parallel
+
+### EMR Instance Types
+
+Ways to add EC2 instances to your cluster.
+
+Instance Groups:
+- Manually add instances of the same type to existing core and task instance groups
+- Manually add a task instance group, can use different instance type
+- Automatic scaling for an instance group based on the value of a CloudWatch metric specified by you
+
+Instance Fleets:
+- Add a single task instance fleet
+- Change the target capacity for on-demand and Spot Instances for existing core and task instance fleets.
+
+Best Practices:
+- Plan your instance capacity:
+  - Run a test cluster using a representative sample data set and monitor the node utilization
+  - Calculate instance capacity and compare that value against the size of your data
+- Master node does not require high computational capacity
+- Most EMR clusters can run on m5.xlarge or m4.xlarge
+- Data processing load performance depends on the capacity of your core nodes and data size as input, during processing, and as output
+
+### EMR Intance Configuration
+
+Long-running clusters and data warehouses
+- Persistent EMR cluster (e.g. Data Warehouse)
+  - Master and core instance group as on-demand instances
+  - Task instance group as spot instances
+
+Cost-driven workloads: low cost, partial work loss OK
+- Transient clusters
+- Run all groups, master core, core, and task instance groups as spot instances
+
+Data-critical workloads: low cost, partial work loss not OK
+- Master and core instance groups as on-demand, task instance groups as spot
+
+Test environment: all instances groups on spot
+
+### EMR HDFS Capacity
+To calculate the storage allocation for you cluster consider the following
+- Number of EC2 instances used for core nodes
+- Capacity of the EC2 instance store for the instance type used
+- Number and size of EBS volumes attached to core nodes
+- Replication factor: how each data block is stored in HDFS for RAID-like redundancy
+  - 3 for a cluster of 10 or more core nodes, 2 for a cluster of 4-9 core nodes, and 1 for a cluster of three or fewer nodes
+- HDFS capacity of you cluster
+  - For each core node, add instance store volume capacity to EBS storage capacity
+  - Multiply by the number of core nodes, then divide the total by the replication factor
+  
+### EMR Dynamic Sizing
+Dynamically scales nodes in your cluster based on demand
+- On scale down of task nodes on a running cluster expect a short delay for any running Hadoop to decommission
+- On scale down of core nodes EMR waits for HDFS to decommission to protect your data
+- Changing configuration improperly on a cluster with high load can seriously degrade cluster performance
+
+### EMR Instance Fleets vs Uniform Instance Groups
+- Choice applies to all nodes for the lifetime of the cluster
+- Instance fleets and instance groups cannot coexist in a cluster
+
+Instance fleets:
+- Each node type has a single instance fleet; task instance fleet is optional
+- Up to 5 instance types (if using allocation strategy, up to 15 instances types on task instance fleets), which can be provisioned as on-demand and Spot Instances
+- Mix of specified instance types to reach target capcities: On-Demand and Spot Instances
+- Core and task instance fleets: assign a target capcity for On-Demand Instances, and another for Spot Instances
+
+Uniform Instance Groups
+- Simplified, up to 50 instance groups: 1 master instance group containing 1 EC2 instance, core instance group containing one or more EC2 instances, up to 48 optional task instance groups
+- Scale each instance group by adding and removing EC2 instances manually, or set up automatic scaling
+
+### Run Multiple Steps in Parallel
+- Allows for parallel processing and greater speed
+- Considerations
+  - Use EMR automatic scaling to scale up/down based on the YARN resouroces to prevent resource contention
+  - Running multiple steps in parallel requires more memory and CPU utilzation from the master node than running one step at a time
+  - Use YARN scheduling features such as FairScheduler or CapacityScheduler to run multiple steps in parallel
+  - If you run out of resources because the cluster is running to many concurrent steps, manually cancel any running stepts to free up resources
 
 ## Integrates with the following data stores
 - Use S3 as an object store for Hadoop
