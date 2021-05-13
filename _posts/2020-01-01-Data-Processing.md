@@ -231,19 +231,28 @@ Best Practices:
 
 ### EMR Intance Configuration
 
-Long-running clusters and data warehouses
+**Long-running clusters and data warehouses**
 - Persistent EMR cluster (e.g. Data Warehouse)
   - Master and core instance group as on-demand instances
   - Task instance group as spot instances
 
-Cost-driven workloads: low cost, partial work loss OK
-- Transient clusters
+**Cost-driven workloads**
+- Low cost, partial work loss OK
+- Transient clusters automatically termiante after all steps are complete. This will lower your operational costs by not leaving the EMR nodes running when they are not in use.
 - Run all groups, master core, core, and task instance groups as spot instances
 
-Data-critical workloads: low cost, partial work loss not OK
+**Data-critical workloads**
+- Low cost, partial work loss not OK
 - Master and core instance groups as on-demand, task instance groups as spot
 
-Test environment: all instances groups on spot
+**Test environment**
+- All instances groups on spot
+
+**Remarks:**
+- EMR long-running clusters must be manually terminated when they are no longer needed. Therefore this option will not give you the same cost-effectivness as a Transient Cluster
+- EMR Core Nodes run HDFS. Therefore, if a Core Node is terminated through the spot instance process, you will lose your data stored in HDFS
+- EMR Task Nodes do not store data in HDFS. If you ose your Task Node through the spot instance process, you will not lose data stored on HDFS.
+- When you launch an EMR cluster via the AWS CLI, the default is to have auto-terminate disabled. This will, in effect, create a long-running cluster.
 
 ### EMR HDFS Capacity
 To calculate the storage allocation for you cluster consider the following
