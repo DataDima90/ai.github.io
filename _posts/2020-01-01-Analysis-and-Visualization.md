@@ -154,6 +154,42 @@ Fully managed NoSQL database that provides low-latency access at scale
 
 ### Redshift
 
+Fully-managed, petabyte-scale data warehouse service for analyzing data using BI tools
+
+**Usage patterns**
+- Designed for online analytical processing (OLAP) using business intelligence tools
+- Analyze sales data for multiple products
+- Analyze ad impressions and clicks
+- Aggregate gaming data
+- Analyze social trends
+
+**Cost**
+- Charges based on the size and number of cluster nodes
+- Backup sotrage > provisioned storage size and backups stored after cluster termiantion billed at standard S3 rate
+
+**Performance**
+- Columnar storage, data compression, and zone maps to reduce query I/O
+- Paralllizes and distributes SQL operations to take advantage of all available resources
+
+### Athena
+
+Interactive query service used to analyze data in S3 using Presto and standard SQL
+
+**Usage pattern**
+- Interactive ad-hoc querying for web logs
+- Query staging data before loading into Redshift
+- Send AWS service logs to S3 for Analysis with Athena
+- Integrate with Jupyter, Zeppelin
+
+![]({{ site.url }}/assets/img/posts/athena.png)
+
+**Cost**
+- $5 per TB of query data scanned
+- Save on per-query costs and get better performance by compressing, partitioning, and converting data into columnar formats
+
+**Performance**
+- Compressing, partitioning, and converting your data into columnar formats
+- Convert data to columnar formats, allowing Athena to read only the columns it needs to process queries
 
 
 ## Appropriate Analytics Service
