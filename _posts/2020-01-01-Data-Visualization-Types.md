@@ -1,6 +1,12 @@
-
-
-
+---
+layout: post
+title: Data Visualization Types
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Data Visualization]
+mathjax: true
+summary: Data Visualization Types
+---
 
 # Data Visualization Types
 Identify the appropriate visualization to gain insight through these data patterns. There is the following visualization types
