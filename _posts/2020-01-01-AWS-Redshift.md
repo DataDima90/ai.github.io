@@ -88,7 +88,10 @@ OLAP using BI tools
   - Assign a column as a distribution key when we create our table on Redshift
   - When we load data into our table, rows are distributed to the node slices by the table distribution key - facilitates parallel processing
 
-Moving data to and from Redshift
+**Moving data to and from Redshift**
+- When using the COPY command to load data files into Redshift, Apache Parquet and ORC are better choices than JSON or CSV because both are columnar data formats that allow you to copy your data more efficiently and cost-effectively into Redshift.
+- You should use the Redshift COPY command to load the data into Redshift.
+- You should use the Redshift UNLOAD command to retrieve data from Redshift.
 - Redshift integrates well with AWS servies to move, transform, and load our data quickly and reliably
   - S3
   - DynamoDB
