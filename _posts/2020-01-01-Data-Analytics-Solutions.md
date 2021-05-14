@@ -1,7 +1,15 @@
+---
+layout: post
+title: AWS Data Analytics Scenarios and their Solutions
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Data Analytics, AWS]
+mathjax: true
+summary: AWS Data Analytics Scenarios and their Solutions
+---
 
 
-
-# Data Analytics Scenarios and their Solutions
+# AWS Data Analytics Scenarios and their Solutions
 
 ## Type of Analysis
 
