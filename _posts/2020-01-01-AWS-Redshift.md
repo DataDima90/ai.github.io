@@ -7,3 +7,41 @@ categories: [Redshift, AWS]
 mathjax: true
 summary: AWS Redshift Overview
 ---
+
+# Redshift
+
+Fully-managed, petabyte-scale data warehouse service for analyzing data using BI tools
+
+**Usage patterns**
+- Designed for online analytical processing (OLAP) using business intelligence tools
+- Analyze sales data for multiple products
+- Analyze ad impressions and clicks
+- Aggregate gaming data
+- Analyze social trends
+
+**Cost**
+- Charges based on the size and number of cluster nodes
+- Backup sotrage > provisioned storage size and backups stored after cluster termiantion billed at standard S3 rate
+
+**Performance**
+- Columnar storage, data compression, and zone maps to reduce query I/O
+- Paralllizes and distributes SQL operations to take advantage of all available resources
+
+- Automatically detects and replaces a failed node in your data warehouse cluster
+
+**Durability and availability**
+- Failed node cluster is read-only until replacement node is provisioned and added to the DB
+- Cluster remains available on drive failure; Redshift mirrors your data across the cluster
+
+**Scalability and elasticity**
+- With API change the number, or type, of nodes while cluster remains live
+
+**Interfaces**
+- JDBC and ODBC drivers for use with SQL clients
+- S3, DynamoDB, Kinesis, BI tools such as QuickSight
+
+**Anti-patterns**
+- Small data sets, better big data sets
+- OLTP, better OLAP
+- Unstructured data
+- Blob data, S3 better choice
