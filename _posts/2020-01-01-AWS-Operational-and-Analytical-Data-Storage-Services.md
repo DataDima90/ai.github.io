@@ -80,7 +80,7 @@ summary: Operational and Analytical Data Storage Services on AWS
 
 ## Analytical Storage Services on AWS
 
-**Redshift - cloud data warehouse**
+### 1. Redshift - cloud data warehouse
 - Use cases
   - Data science queries, marketing analysis
 - Fast: columnar storage technology that parallelizes queries
@@ -89,7 +89,7 @@ summary: Operational and Analytical Data Storage Services on AWS
   - Data replicated within the Redshift cluster
   - Continous backup to S3
 
-**S3 - object storage via a web service**
+### 2. S3 - object storage via a web service
 - Use cases
   - Data lake, analytics, data archiving, static website
 - Fast: query structured and semi-structured data
@@ -108,86 +108,79 @@ We should consider our data's freshness when selecting our storage system compon
 - Use S3 Glacier for colda data
 
 ## Columnar storage
-- Drastically reduces the overall disk I/O requirements and reduces the amount of data we need to load from disk
-  - In relational dabases, data blocks store values sequentially for each consecutive column making up the entire row
-  - In columnar databases, each data block stores values of a single column for multiple rows
+
+Drastically reduces the overall disk I/O requirements and reduces the amount of data we need to load from disk
+- In relational dabases, data blocks store values sequentially for each consecutive column making up the entire row
+- In columnar databases, each data block stores values of a single column for multiple rows
 
 ## Data Access and Retrieval Patterns
-- Characteristics of our data
-  - What type of date are we storing? 
-    - Structured data
-      - Examples: accounting data, demograhpic info, logs, mobile device, geolocation data
-      - Storage options: RDS, Redshift, S3 Data Lake
-    - Unstructured data
-      - Examples: email text, photos, video, audio, PDFs
-      - Storage options: S3 Data Lake, DynamoDB
-    - Semi-structured data
-      - Examples: email metadata, digital photo metadata, video metadata, JSON data
-      - Storage options: S3 Data Lake, DynamoDB
-- Data storage life cycle
-  - How long do we need to retain our data?
-    - S3
-    - S3 Glacier
-- Data access retrieval and latency requirements
-  - How fast does our retrieval need to be?
-    - Elasticache
-    - DynamoDB Acceleration (DAX)
+Characteristics of our data
+- What type of date are we storing? 
+  - Structured data
+    - Examples: accounting data, demograhpic info, logs, mobile device, geolocation data
+    - Storage options: RDS, Redshift, S3 Data Lake
+  - Unstructured data
+    - Examples: email text, photos, video, audio, PDFs
+    - Storage options: S3 Data Lake, DynamoDB
+  - Semi-structured data
+    - Examples: email metadata, digital photo metadata, video metadata, JSON data
+    - Storage options: S3 Data Lake, DynamoDB
 
-### Data Lake vs Data Warehouse
-- Data Warehouse
-  - Optimized for relational data produced by transactional systems
-  - Data structure/schema defined which optimizes fast SQL queries
-  - Used for operational reporting and analysis
-  - Schema on write, i.e. data is transformed before loading
-- Data Lake
-  - Relational and non-relational data
-  - Data structure/schema not defined when stored in the data lake
-  - Big data analytics, text analysis, ML
-  - Schema on read
+## Data Storage Lifecycle
+How long do we need to retain our data?
 
-### Object vs Block store
-- Object storage
-  - S3 is used for object storage: highly scalable and available
-  - Store structured, unstructured, and semi-structured data
-  - Web sites, mobile apps, archive, analytics applications
-  - Storage via a web service
-- File storage
-  - Elastic File System (EFS) is used for file storage: shared file systems
-  - Content repositories, development environments, media stores, user home directories
-- Block storage
-  - Elastic Block Storage (EBS) attached to EC2 instances, EFS: volume type choices
-  - Redshift, Operating Systems, DBMS installs, file systems
-  - HDD: throughput intensive, large I/O, sequential I/O, big data
-  - SSD: high I/O per second, transaction, random access, boot volumes
-  - What is the difference between HDD and SSD?
+**Persistent data**
+- OLTP and OLAP
+- DynamoDB, RDS, Redshift, S3
 
-### Data Storage Lifecycle
-- Persistent data
-  - OLTP and OLAP
-  - DynamoDB, RDS, Redshift
-- Transient data
-  - Cached data, streaming data consumed in near-time time
-  - Elasticache (Redis, Memcached), DynamoDB Accelerator (DAX)
-  - Website session infor, streaming gaming data
-- Archive data
-  - Retained for years, typically regulatory
-  - S3 Glacier
+**Transient data**
+- Cached data, streaming data consumed in near-real time
+- Elasticache (Redis, Memcached), DynamoDB Accelerator (DAX)
+- Website session infor, streaming gaming data
 
-### Data Access Retrieval and Latency
-- Retrieval speed
-  - Near-real time
-    - Streaming data with near-real time dashboad display
-  - Cached data
-    - Elasticache (Memcached, Redis) **What is the difference?**
-    - DAX
-      - Right through cache
+**Archive data**
+- Retained for years, typically regulatory
+- S3 Glacier
 
-## Data Management
+## Data Access Retrieval and Latency
+How fast does our retrieval need to be?
+Retrieval speed
+- Near-real time
+  - Streaming data with near-real time dashboad display
+- Cached data
+  - Elasticache (Memcached, Redis)
+  - DAX
+    - Right through cache
 
-### Different Approaches to Data Management
-- Data Lake
-  - Store any data centrally at massive scale
-  - Store raw data
-- Data Warehouse
-  - Centralized data repository for BI and analysis
-  - Access the centralized data using BI tools, SQL clients, and other analytics apps
+## Data Lake vs Data Warehouse
+
+**Data Warehouse**
+- Optimized for relational data produced by transactional systems
+- Data structure/schema defined which optimizes fast SQL queries
+- Used for operational reporting and analysis
+- Schema on write, i.e. data is transformed before loading
+
+**Data Lake**
+- Relational and non-relational data
+- Data structure/schema not defined when stored in the data lake
+- Big data analytics, text analysis, ML
+- Schema on read
+
+## Object vs Block store
+
+**Object storage**
+- S3 is used for object storage: highly scalable and available
+- Store structured, unstructured, and semi-structured data
+- Web sites, mobile apps, archive, analytics applications
+- Storage via a web service
+
+**File storage**
+- Elastic File System (EFS) is used for file storage: shared file systems
+- Content repositories, development environments, media stores, user home directories
+
+**Block storage**
+- Elastic Block Storage (EBS) attached to EC2 instances, EFS: volume type choices
+- Redshift, Operating Systems, DBMS installs, file systems
+- HDD: throughput intensive, large I/O, sequential I/O, big data
+- SSD: high I/O per second, transaction, random access, boot volumes
+- What is the difference between HDD and SSD?
