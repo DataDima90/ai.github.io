@@ -187,3 +187,14 @@ Systems Manager Parameter Store
 - Assess overall compliance and risk status from a configuration perspective, view compliance trends over time and pinpoint which configuration change caused a resource to drift out of compliance with a rule
 
 ![]({{ site.url }}/assets/img/posts/awsconfig.png)
+
+# General
+
+**Amazon Inspector**
+Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.
+
+**Amazon GuardDuty**
+Amazon GuardDuty offers conitnuous monitoring of your AWS accounts and workloads to protect against malicious or unauthorized activites. 
+
+**Macie**
+Macie is used for data security and data privacy service with pattern matching to discover and protect sensitive data in AWS.
