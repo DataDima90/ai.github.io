@@ -1,14 +1,14 @@
 ---
 layout: post
-title: AWS Operational and Analytical Data Storage Services
+title: AWS Data Storage Solutions
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [AWS, Data Storage]
 mathjax: true
-summary: Operational and Analytical Data Storage Services on AWS
+summary: AWS Data Storage Solutions
 ---
 
-# Operational and Analytical Data Storage Characteristics
+# Operational and Analytical Data Storages
 
 **Operational Storage Characteristics**
 - Data stored as rows
