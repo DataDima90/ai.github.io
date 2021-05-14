@@ -130,7 +130,7 @@ Use Step Functions to automate your Glue workflow
 
 
 # Kinesis ETL (Streaming) Processing
-- Use Kinesis Analytics to gain real-time insights into your streaming data
-  - Query data in your stream or build streaming applications using SQL or Flink
-  - Use for filtering, aggregation, and anomaly detection
-  - Preprocess your data with lambda
+Use Kinesis Analytics to gain real-time insights into your streaming data
+- Query data in your stream or build streaming applications using SQL or Flink
+- Use for filtering, aggregation, and anomaly detection
+- Preprocess your data with lambda
