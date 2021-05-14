@@ -88,3 +88,11 @@ OLAP using BI tools
   - Assign a column as a distribution key when we create our table on Redshift
   - When we load data into our table, rows are distributed to the node slices by the table distribution key - facilitates parallel processing
 
+Moving data to and from Redshift
+- Redshift integrates well with AWS servies to move, transform, and load our data quickly and reliably
+  - S3
+  - DynamoDB
+  - EMR via SSH and COPY Command from Redshift
+  - EC2 via SSH and COPY Command from Redshift
+  - Data Pipeline
+  - DMS
