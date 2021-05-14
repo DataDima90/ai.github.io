@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Data Processing on AWS
+title: AWS Data Processing Solutions
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [Data Processing, AWS]
 mathjax: true
-summary: Data Processing on AWS
+summary: AWS Data Processing Solutions
 ---
 
-# Data Processing on AWS
+# AWS Data Processing Solutions
 
 ## Batch and Streaming processing model
 
