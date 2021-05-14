@@ -92,5 +92,61 @@ NAT Gateway
 - Other AWS services which do not currently support VPC endpoints use only an internet gateway
 
 
+## Encryption and Tokenization
+
+Protect data against data exfiltration (unauthorized copying and/or transferring data) and unauthorized access
+
+Different ways to protect data
+- Use a hardware security module (HSM) to manage the top-level encryption keys
+- Encryption at rest
+- Encryption in transit
+- Alternative to encryption to secure highly sensitive subsets of data for compliance puroposes
+- Secrets management
+
+![]({{ site.url }}/assets/img/posts/encryption.png)
+
+### HSM
+
+Use HSM 
+- if you require your keys stored in dedicated, third-party validated hardware security modules under your exclusive control
+- if you need to comply to FIPS 140-2
+- If you need high-performance in VPC cryptographic acceleration (bulk crypto)
+- if you need a multi-tenant, managed service that allows you to use and manage encryption keys
+
+
+![]({{ site.url }}/assets/img/posts/hsm.png)
+
+### Encryption at Rest and In Transit - EMR
+
+- Prevent unauthorized users from reading data on a cluster and associated data storage systems
+- Encryption at rest: data saved to persistent media
+- Ecryption in transit: data that may be intercepted as it travels the network
+- Use EMR security configurations to configure data encryption settings for clusters
+  - Enable security for data in-transit and dat at-rest in EBS volumes and EMRFS on S3
+- EMR release version 4.1.0 and later, you can configure transparent encryption in HDFS, which is not configured using security configurations
+ 
+![]({{ site.url }}/assets/img/posts/emrencryption.png)
+
+### Tokenization
+
+- Protect certain elements in the data contains high sensitivity or a specific regulatory compliance requirement, such as PCI
+- Separates sensitie data into its own dedicated, secured data store
+- Use tokens to represent sensitive data instead of end-to-end encryption
+- Reduce risk with temporary, one-time-use tokens
+
+![]({{ site.url }}/assets/img/posts/tokenization.png)
+
+### Secrets Management
+
+Secrets Manager
+- use secrets in application code to connect to databases, APIs, and other resources
+- Provides rotation, audit, and access control
+
+Systems Manager Parameter Store
+- Centralized store to manage configuration data
+- Plain-text data such as database strings or secrets such as passwords
+- Does not rotate parameter stores automatically
+
+![]({{ site.url }}/assets/img/posts/secretmanagement.png)
 
 
