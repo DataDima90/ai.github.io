@@ -44,48 +44,6 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
 
 
 
-
-### EMR
-
-Uses Hadoop to distribute data and processing across a resizeable cluster of EC2 instances
-
-**Usage patterns**
-- Reduces large processing problems and data sets into smaller jobs and distributes them across many compute nodes in a Hadoop cluster
-- Log processing and analytics
-- Large ETL data movement
-- Ad targeting, click stream analytics
-- Predictive analytics
-
-**Cost**
-- Pay for the hours the cluster is up
-- EC2 pricing options (On-Demand, Reserved, and Spot)
-- EMR price is in addition to EC2 price
-
-**Performance**
-- Driven by type/number of EC2 instances
-- Ephemeral or long-running
-
-![]({{ site.url }}/assets/img/posts/emr.png)
-
-- Fault tolerant for core node failures and continues job execution if a slave node goes down
-
-**Durability and availability**
-- Starts p a new node if core node fails
-- Will not replace nodes if all nodes in the cluster fail
-- Monitor for node failures through CloudWatch
-
-**Scalability and elasticity**
-- Resize your running cluster: add core nodes, add/remove task nodes
-
-**Interfaces**
-- Tools on top of Hadoop: Hive, Pig, Spark, HBase, Presto
-- Kinesis Connector: directly read and query data from Kinesis Data Streams
-
-**Anti-patterns**
-- Small data sets; Made for big data sets
-- ACID transactions; RDS is a better choice
-
-
 ### Kinesis
 
 Load and analyze streaming data; Ingest real-time data into data lakes and data warehouses
