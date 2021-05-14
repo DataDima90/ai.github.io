@@ -8,7 +8,7 @@ mathjax: true
 summary: Operational and Analytical Data Storage Services on AWS
 ---
 
-# Operational and Analytic Data Storage Characteristics
+# Operational and Analytical Data Storage Characteristics
 
 **Operational storage characteristics**
 - Data stored as rows
