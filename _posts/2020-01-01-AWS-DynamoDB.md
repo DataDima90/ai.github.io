@@ -95,3 +95,12 @@ Fully managed NoSQL database that provides low-latency access at scale
   - Uses last-writer-wins reconciliation with concurrent updates
   - When a table in a region has issues, application directs to a different region
 
+
+# Sources
+
+- [https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb](https://www.trek10.com/blog/best-practices-for-secondary-indexes-with-dynamodb)
+- [https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python](https://www.trek10.com/blog/easier-dynamodb-unit-testing-with-python)
+- [https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696](https://codeburst.io/inverted-index-gsi-overloading-and-sparse-index-in-dynamodb-cbfb520b2696)
+- [https://codeburst.io/dynamodb-data-modeling-7f11950b25bf](https://codeburst.io/dynamodb-data-modeling-7f11950b25bf)
+- [https://blog.thepolyglotprogrammer.com/10-things-you-should-know-about-dynamodb-e5b9593e6340](https://blog.thepolyglotprogrammer.com/10-things-you-should-know-about-dynamodb-e5b9593e6340)
+
