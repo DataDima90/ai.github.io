@@ -8,7 +8,9 @@ mathjax: true
 summary: AWS Data Storage Solutions
 ---
 
-# Operational and Analytical Data Storages
+# AWS Data Storage Solutions
+
+## Operational and Analytical Data Storages Characteristics
 
 **Operational Storage Characteristics**
 - Data stored as rows
