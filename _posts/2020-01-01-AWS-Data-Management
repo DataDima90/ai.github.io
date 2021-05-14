@@ -1,0 +1,13 @@
+
+
+
+
+## Data Management
+
+### Different Approaches to Data Management
+- Data Lake
+  - Store any data centrally at massive scale
+  - Store raw data
+- Data Warehouse
+  - Centralized data repository for BI and analysis
+  - Access the centralized data using BI tools, SQL clients, and other analytics apps
