@@ -10,7 +10,7 @@ summary: Operational and Analytical Data Storage Services on AWS
 
 # Operational and Analytical Data Storage Characteristics
 
-**Operational storage characteristics**
+**Operational Storage Characteristics**
 - Data stored as rows
 - Low latency
 - Hight throughput
@@ -19,8 +19,10 @@ summary: Operational and Analytical Data Storage Services on AWS
 - Benefits from caching
 - Often used in enterprise critical applications
 
-**Analytic storage characteristics**
-- Two types: OLAP (ad-hoc queries) and DSS (long running aggregations)
+**Analytical Storage Characteristics**
+- Two types: 
+  - OLAP (ad-hoc queries)
+  - DSS (long running aggregations)
 - Data stored as columns
 - Large datasets that take advantage of partitioning (e.g. parquet)
 - Frequent complex aggregations
