@@ -42,43 +42,6 @@ Choose the correct approach and tool for your analytics problem. Know the AWS pu
   - Glue
   - Lambda
 
-### Glue
-
-- Fully managed ETL service used to catalog, clean, enrich, and move data between data stores
-
-**Usage patterns**
-- Crawl your data and generate code to execute, including data transformation and loading
-- Integrate with services like Athena, EMR, and Redshift
-- Generates customizable, reusable, and portable ETL code using Python and Spark
-
-![]({{ site.url }}/assets/img/posts/glueusagepattern.png)
-
-**Cost**
-- Hourly rate, billed by the minute, for crawler and ETL jobs
-- Glue Data Catalog: pay a monthly fee for storing and accessing the metadata
-
-**Performance**
-- Scale-out Apache Spark environment to load data to target data store
-- Specify the number of Data Processing Units (DPUs) to allocate to your ETL job
-
-Connect to many data sources, S3, RDS, or many other types of data sources
-
-**Durability and availability**
-- Glue leverages the durability of the data stores to which you connect
-- Provides job status and pushes notifications to CloudWatch events
-- Use SNS notifications from CloudWatch events to notify of job failures or success
-
-**Scalability and elasticity**
-- Runs on top of the Apache Spark for transformation job scale-out execution
-
-**Interfaces**
-- Crawlers scan many data store types
-- Bulk import Hive metastore into Glue Data Catalog
-
-**Anti-patterns**
-- Streaming data, unless Spark Streaming
-- Heterogeneous ETL job types; use EMR
-- NoSQL databases: not supported as data source
 
 
 ### Lambda
