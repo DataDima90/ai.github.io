@@ -188,7 +188,7 @@ Systems Manager Parameter Store
 
 ![]({{ site.url }}/assets/img/posts/awsconfig.png)
 
-# General
+# Other Amazon Services for Security
 
 **Amazon Inspector**
 Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.
