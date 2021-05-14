@@ -10,7 +10,7 @@ summary: Data Processing on AWS
 
 # Data Processing on AWS
 
-## Definition of Batch and Streaming processing model
+## Batch and Streaming processing model
 
 Batch processing model
 - Data is collected over a period of time, then run through analyitcs tools
@@ -20,7 +20,7 @@ Streaming processing model
 - Data is processed in a stream, a record at a time or in micro-batches of tens, hundreds, or thousands of records
 - Fast, designed for information that's needed immediately
 
-### Services for Batch Processing ETL
+## Services for Batch Processing ETL
 
 AWS services used for batch processing
 
@@ -34,7 +34,7 @@ AWS services used for batch processing
 - Cluster of servers
 - Very flexible in tool/application selection
 
-### Services for Streaming Processing ETL
+## Services for Streaming Processing ETL
 
 AWS services used for streaming processing
 
@@ -66,7 +66,7 @@ Coordinating your ETL jobs across Glue, EMR and Redshift.
 - Orchestrate Spark, Redshift and EMR workloads using Step Functions
 
 
-### Workflows in Glue
+## Workflows in Glue
 
 - Use workflows to create and visualize complex ETL tasks involving multiple crawlers, jobs, and triggers
 - Manages the execution and monitoring of all components
