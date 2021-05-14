@@ -114,17 +114,19 @@ Drastically reduces the overall disk I/O requirements and reduces the amount of 
 - In columnar databases, each data block stores values of a single column for multiple rows
 
 ## Data Access and Retrieval Patterns
-Characteristics of our data
-- What type of date are we storing? 
-  - Structured data
-    - Examples: accounting data, demograhpic info, logs, mobile device, geolocation data
-    - Storage options: RDS, Redshift, S3 Data Lake
-  - Unstructured data
-    - Examples: email text, photos, video, audio, PDFs
-    - Storage options: S3 Data Lake, DynamoDB
-  - Semi-structured data
-    - Examples: email metadata, digital photo metadata, video metadata, JSON data
-    - Storage options: S3 Data Lake, DynamoDB
+Characteristics of our data. What type of date are we storing? 
+
+**Structured data**
+- Examples: accounting data, demograhpic info, logs, mobile device, geolocation data
+- Storage options: RDS, Redshift, S3 Data Lake
+
+**Unstructured data**
+- Examples: email text, photos, video, audio, PDFs
+- Storage options: S3 Data Lake, DynamoDB
+
+**Semi-structured data**
+- Examples: email metadata, digital photo metadata, video metadata, JSON data
+- Storage options: S3 Data Lake, DynamoDB
 
 ## Data Storage Lifecycle
 How long do we need to retain our data?
@@ -143,14 +145,15 @@ How long do we need to retain our data?
 - S3 Glacier
 
 ## Data Access Retrieval and Latency
-How fast does our retrieval need to be?
-Retrieval speed
-- Near-real time
-  - Streaming data with near-real time dashboad display
-- Cached data
-  - Elasticache (Memcached, Redis)
-  - DAX
-    - Right through cache
+How fast does our retrieval need to be? Retrieval speed:
+
+**Near-real time**
+- Streaming data with near-real time dashboad display
+
+**Cached data**
+- Elasticache (Memcached, Redis)
+- DAX
+  - Right through cache
 
 ## Data Lake vs Data Warehouse
 
