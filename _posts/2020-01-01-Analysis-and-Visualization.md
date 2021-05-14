@@ -638,6 +638,51 @@ Do not use for OLTP or with small data sets
 
 ![]({{ site.url }}/assets/img/posts/redshiftpattern.png)
 
+
+### Visualization Methods
+
+Understand refresh schedule, delivery method, and access method based on a scenario. We use data from heterogeneous data sources in visualization solution.
+
+### Refresh Schedule - Real-time Scenarios
+
+Scenarios that question the appropriate refresh schedule based on data freshness requirement
+Real-time scenarios, typically using Elasticsearch and Kibana
+- Refresh_Interval in Elasticsearch domain updates the domain indices; determines query freshness
+- Default is every second - expensive, make sure the shards are evenly distributed.
+  - Formula: Number of shards for index = number of shards per node * number of data nodes 
+- Balance refresh rate cost with decision making needs
+
+### Refresh Schedule - Interactive Scenarios
+
+Real-time scenarios, typically ad-hoc exploration using QuickSight
+Refresh SPICE data
+- Refresh a data set on a schedule, or you can refresh your data by refreshing the page in an analysis or dashboard
+- Use the CreateIngestion API operation to refresh data
+
+Data set based on a direct query and not stored in SPICE, refresh data by opening the data set
+
+### Refresh Schedule - EMR Notebooks
+
+Using EMR Notebooks to query and visualize data. 
+Data refreshed every time the notebook is run
+- Expensive proces, balance refresh rate cost with decision making needs
+
+## Kibana Visualizations
+
+### Visualization Tool
+- Open-source data visualization and exploration tool used for log and time-series analytics, application monitoring, and operational intelligence use cases. Especially where searching is the main need.
+- Tight integration with Elasticsearch
+- Charts and reports to interactively navigate through large amounts of log data
+- Pre-built aggregations and filters
+- Dashboards and reports to share
+
+### Kibana Configuration
+
+- To visualize and explore data in Kibana, you must first create index patterns
+- Index patterns point Kibana to the Elasticsearch indexes containing the data to explore
+- Explore data with Kibana's data discovery functions
+- Kibana visualizations are based on Amazon Elasticsearch queries
+
 ## Appropriate Analytics Service
 
 **Analytics**
