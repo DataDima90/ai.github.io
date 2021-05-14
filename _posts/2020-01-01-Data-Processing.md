@@ -64,48 +64,6 @@ Coordinating your ETL jobs across Glue, EMR and Redshift.
 - Leverage EMR API calls in CloudTrail
 - Orchestrate Spark, Redshift and EMR workloads using Step Functions
 
-### Respond to State Changes on EMR Cluster
-Trigger create, terminate, scale cluster, run Spark, Hive, or Pig workloads based on Cluster state changes
-- EMR CloudWatch events support notify you of state changes in your cluster
-- Respond to state changes programmatically
-- EMR CloudWatch events
-  - Cluster State Change
-  - Instance Group and Instance Fleet State Change
-  - Step State Change
-  - Create filters and rules to match events and route them to SNS topics, Lambda functions, SQS queues, Kinesis Streams
-
-### Use CloudWatch Metrics to Manage EMR Cluster
-
-EMR metrics updated every 5 minutes, collected and pushed to CloudWatch
-- Non-configurable metric timming
-- Metrics archived for two weeks then discarded
-
-EMR metrics uses
-- Track progress of cluster: `RunningMapTasks`, `RemainingMapTasks`, `RunningReducedTasks`, and `RemainingReduceTasks`
-- Detect idle clusters: `IsIdle` metric tasks if a cluster is live, but not currently running tasks. Set an alarm to fire when the cluster has been idle for a given period of time
-- Detect when a node runs out of storage: `HDFSUtilization` metric gives the percentage of disk space currently used. If it rises above an acceptable level for your application, such as 80% of capacity used, you take an action to resize your cluster and add more core nodes
-
-### View and Monitor EMR Cluster
-
-EMR has several tools for retrieving information about your cluster
-- Console, CLI, and API
-- Hadoop web interfaces and logs on Master node, e.g. Hue
-- Use monitoring services like CloudWatch and Ganglia to track the performance of your cluster
-- Application history available through persistent application UIs for Spark History Server, persistent YARN timeline Server, and Tez user interfaces
-
-### Leverage EMR API Calls in CloudTrail
-
-CloudTrail holds a record of actions taken by users, roles, or an AWS servie in EMR
-- Captures all API calls for EMR as events
-- Enable continous delivery of CloudTrail events to an S3 bucket
-- Determine the EMR request, the IP address from which the request was made, who made the request, when it was made, and additional details
-
-### Orchestrate Spark and EMR workloads using Step Functions
-
-- Use Apache Oozie or Apache Airflow scheduler tools for EMR Spark applications
-- Use Step Functions and interact with Spark applications on EMR using Apache Livy
-- Directly connect Step Functions to EMR
-  - Create data processing and analysis workflows with minimal code and optimize cluster utilization
 
 ### Workflows in Glue
 
