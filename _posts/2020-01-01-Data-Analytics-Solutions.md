@@ -9,7 +9,7 @@ summary: AWS Data Analytics Scenarios and their Solutions
 ---
 
 
-# AWS Data Analytics Scenarios and their Solutions
+# AWS Data Analytics Solutions
 
 ## Type of Analysis
 
@@ -29,7 +29,7 @@ summary: AWS Data Analytics Scenarios and their Solutions
 - Determine action to take
 - Uses other three to predict and can be automated
 
-## Analysis Solutions
+## Analytics Processing Methods
 
 Identify analytics processing method based on data type collected and analysis type used
 
