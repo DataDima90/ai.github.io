@@ -107,24 +107,12 @@ We should consider our data's freshness when selecting our storage system compon
 - Can use S3 for all types (hot, warm, cold)
 - Use S3 Glacier for colda data
 
-
-
-
-### Columnar storage
+## Columnar storage
 - Drastically reduces the overall disk I/O requirements and reduces the amount of data we need to load from disk
   - In relational dabases, data blocks store values sequentially for each consecutive column making up the entire row
   - In columnar databases, each data block stores values of a single column for multiple rows
 
-### Moving data to and from Redshift
-- Redshift integrates well with AWS servies to move, transform, and load our data quickly and reliably
-  - S3
-  - DynamoDB
-  - EMR via SSH and COPY Command from Redshift
-  - EC2 via SSH and COPY Command from Redshift
-  - Data Pipeline
-  - DMS
-
-### Data Access and Retrieval Patterns
+## Data Access and Retrieval Patterns
 - Characteristics of our data
   - What type of date are we storing? 
     - Structured data
