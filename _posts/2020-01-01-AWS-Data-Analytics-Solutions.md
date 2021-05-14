@@ -1,11 +1,11 @@
 ---
 layout: post
-title: AWS Data Analytics Scenarios and their Solutions
+title: AWS Data Analytics Solutions
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
 categories: [Data Analytics, AWS]
 mathjax: true
-summary: AWS Data Analytics Scenarios and their Solutions
+summary: AWS Data Analytics Solutions
 ---
 
 
