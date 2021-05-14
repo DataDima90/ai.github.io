@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Data Storage
+title: AWS Operational and Analytical Data Storage Services
 featured-img: shane-rounce-205187
 image: shane-rounce-201587
-categories: [AWS, Storage Solutions]
+categories: [AWS, Data Storage]
 mathjax: true
-summary: Data Storage
+summary: Operational and Analytical Data Storage Services on AWS
 ---
 
-# Data Storage
+# Operational and Analytic Data Storage Characteristics
 
 **Operational storage characteristics**
 - Data stored as rows
@@ -28,7 +28,7 @@ summary: Data Storage
 - Less frequent change
 
 
-### Operational Storage Services on AWS
+## Operational Storage Services on AWS
 
 #### 1. RDS - distributed relational database service
 - Use cases
