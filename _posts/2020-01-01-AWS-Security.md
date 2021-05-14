@@ -150,3 +150,40 @@ Systems Manager Parameter Store
 ![]({{ site.url }}/assets/img/posts/secretmanagement.png)
 
 
+# Compliance and Governance
+
+- Identify required compliance frameworks (HIPAA, PCI, etc.)
+- Understand contractual and agreement obligations
+- Monitor policies, standards, and security controls to respond to events and changes in risk
+- Services to create compliant analytics solution
+  - AWS Artifcat: provides on-demand access to AWS compliance and security related information
+  - CloudTrail and CloudWatch: enable governance, compliance, operational auditing, and risk auditing of AWS account
+  - AWS Config: ensure AWS resources conform to your organization's security guidelines and best practices
+
+## AWS Artificat
+
+- Self-service document retrieval portal
+- Manage AWS agreements: NDAs, Business Associate Addendum (BAA)
+- Produce security controls documentation: provide AWS artifact compliance documents to regulators and auditors
+- Download AWS security and compliance documents, such as AWS ISO certifications, PCI, and SOC reports
+
+## CloudTrail and CloudWatch
+
+- CloudTrail tracks actions in your AWS account by recording API activity
+- CloudWatch monitors how resources perform, collecting application metrics and log information
+- Simplify security analysis, resource change tracking, and troubleshooting by combining event history monitoring via CloudTrail and resource history via CloudWatch
+- Use CloudTrail to audit and review API calls and detect security anomalies
+- Use CloudWatch to create alert rules that trigger SNS notifications or Lambda functions that run in response to a security or risk event
+
+![]({{ site.url }}/assets/img/posts/cloudtrail.png)
+
+## AWS Config
+
+- AWS resource inventory, configuration history, and configuration change notifications that enable security and governance
+- Discover existing AWS resources
+- Export complete inventory of account AWS resources with all configuration details
+- Determine how a resource was configured at any point in time
+- Config Rules: represent desired configurations for a resource and is evaluated against configuration changes on the relevant resources, as recorded by AWS config
+- Assess overall compliance and risk status from a configuration perspective, view compliance trends over time and pinpoint which configuration change caused a resource to drift out of compliance with a rule
+
+![]({{ site.url }}/assets/img/posts/awsconfig.png)
