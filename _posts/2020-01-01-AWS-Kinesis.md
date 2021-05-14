@@ -49,3 +49,14 @@ Load and analyze streaming data; Ingest real-time data into data lakes and data 
 **Anti-patterns**
 - Small scale consistent throughput
 - Long-term data storage and analytics; Redshift, S3, or DynamoDB are better choices
+
+**Analytics Solutions Patterns with Kinesis**
+
+Streams data to analytics processing solutions
+- Video analytics applications
+- Real-time analytics applications
+- Analyze IoT device data
+- Blog posts and article analytics
+- System and application log analytics
+
+![]({{ site.url }}/assets/img/posts/kinesispattern.png)
