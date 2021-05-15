@@ -19,6 +19,8 @@ summary: A general overview of Apache Spark and Best Practices
 - Spark provides caching and in-memory data storage
 
 
+## Components of the Spark ecosystem
+
 Apache Spark has 3 main categories that comprise its ecosystem. Those are:
 
 **Language support**
@@ -32,3 +34,7 @@ Spark supports 5 main core components. There are Spark Core, Spark SQL, Spark St
 **Cluster Management**
 
 Spark can be run in 3 environments. Those are the Standalone cluster, Apache Mesos, and YARN.
+
+
+## How Spark runs applications
+
