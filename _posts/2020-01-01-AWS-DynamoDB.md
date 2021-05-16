@@ -8,7 +8,7 @@ mathjax: true
 summary: AWS DynamoDB Overview
 ---
 
-# DynamoDBTEST
+# DynamoDB
 
 Fully managed NoSQL database that provides low-latency access at scale
 
