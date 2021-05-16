@@ -25,6 +25,13 @@ Gather data for problem defining
 - Scrape HTML pages
   - Beautiful Soup
 
+Several AWS services to help gather data
+  - Amazon Data Pipeline
+  - AWS Database Migration Service (DMS)
+  - AWS Glue
+  - Amazon Sagemaker
+  - Amazon Athena
+
 ## Step 2: Handling Missing Data
 
 Several approaches to handle this problem
@@ -43,8 +50,13 @@ Several approaches to handle this problem
 
 AKA Dimensionality Reduction
 - Reduce the number of features by creating new features from existing features
+- feature extraction creates a new, smaller set of features that stills caputers most of the useful information
 
 ## Step 4: Feature Selection
+
+Use feature selction to filter irrelevant or redundant features from our dataset
+- Feature selection requires normalization
+- Feature selection removes features from our dataset - **Variance Thresholds**
 
 - Rank the importance of existing features
 - Remove less important features
@@ -55,6 +67,8 @@ AKA Dimensionality Reduction
 
 - Encode categorical data to integers
   - Be careful with ordinal features
+- Binarizer Encoding: for features of a binary nature
+- Label Encoding: may imply ordinality, can use Ordinal Encoder
 - One-hot-encoding: Change nominal categorical values such as 'true', 'false', or 'rainy', 'sunny' to numerical values
 
 ## Step 6: Numerical Feature Engineering
@@ -68,7 +82,7 @@ AKA Dimensionality Reduction
 ## Step 7: Training and Testing Datasets
 
 - Split dataset into a training subset and a testing subst
-  - Typically a 80% 20% split
+  - Typically a 80% / 20% split
 
 
 
