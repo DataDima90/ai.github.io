@@ -1,0 +1,76 @@
+---
+layout: post
+title: Knowledge Summary for AWS Machine Learning Speciality 
+featured-img: shane-rounce-205187
+image: shane-rounce-201587
+categories: [Machine Learning, AWS]
+mathjax: true
+summary: A summary of all knowledge for the AWS Machine Learning Speciality Certification
+---
+
+# Summary
+
+
+# Data Engineering
+
+## Step 1: Gather Data
+
+Gather data for problem defining
+- Gather own unique data
+- Publicly available data
+  - Kaggle
+  - Reddit
+  - Google Dataset Search
+  - UCI Machine Learning Resository
+- Scrape HTML pages
+  - Beautiful Soup
+
+## Step 2: Handling Missing Data
+
+Several approaches to handle this problem
+- Null value replacement
+- Mode/median/average value replacement
+- Remove the entire record
+- Model-based imputation
+  - Regression
+  - K-Nearest Neighbors
+  - Deep Learning
+- Interpolation / Extrapolation
+- Forward filing / Backward filing
+- Hot deck imputation
+
+## Step 3: Feature Engineering
+
+AKA Dimensionality Reduction
+- Reduce the number of features by creating new features from existing features
+
+## Step 4: Feature Selection
+
+- Rank the importance of existing features
+- Remove less important features
+- Use Principal Component Analysis (PCA)
+  - An unsupervissed learning algorithm that reduces the number of features while still retaining as much information as possible
+
+## Step 5: Encode Categorical Values
+
+- Encode categorical data to integers
+  - Be careful with ordinal features
+- One-hot-encoding: Change nominal categorical values such as 'true', 'false', or 'rainy', 'sunny' to numerical values
+
+## Step 6: Numerical Feature Engineering
+
+- Transform numerical values so machine learning algorithms can better analyze them
+- Change numerical values so all values are on the same scale
+  - Normalization: rescales the values to a range of [0, 1]
+  - Standardization: rescales data to have a mean of 0 and a standard deviation of 1 (unit variance)
+  - Binning
+
+## Step 7: Training and Testing Datasets
+
+- Split dataset into a training subset and a testing subst
+  - Typically a 80% 20% split
+
+
+
+
+
